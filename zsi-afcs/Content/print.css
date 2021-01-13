@@ -1,0 +1,59 @@
+body{
+	background-color: #000;
+}
+.noprint{
+	display:none;
+}
+
+.page, div.zPanel table{
+	border:none;    
+}
+.navbar,.btn,.debugPanel { 
+   display: none;     
+}
+
+table tr th,table tr td{
+  border:solid 1px #000;
+}
+
+.pgbreakBefore{
+	page-break-before:always
+}
+.pgbreakAfter{
+	page-break-after:always
+}
+.zPanel table thead{
+	display: table-header-group; 	
+}
+.page {
+		overflow: visible;
+}
+
+footer{
+	display:none;
+}
+
+
+.page
+,table.zTable
+,select.form-control
+,.input-sm
+,input
+,.car-box
+,select#pageNo
+,.textarea-box{
+	border:none !important;    
+}
+
+.pageHeader 
+,.dashboard-button
+,.tittlePanel .pageTitle
+,#leftPane 
+,.btn
+,.dashBoardPanel > .header .logo
+,img#carImage
+,.leftmenu-box
+,.textarea-box
+{
+	display:none !important;
+}

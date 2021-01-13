@@ -1,0 +1,196 @@
+<style>
+    .was-validated .custom-select:invalid + .select2 .select2-selection{
+        border-color: #f30000!important;
+    }
+    .was-validated .custom-select:valid + .select2 .select2-selection{
+        border-color: #1dc9b7!important;
+    }
+    .panel-container-grid{
+        min-height: 200px !important;
+    }
+    .panel-container-grid .panel-content{
+        padding: 0 !important;
+        margin: 0 -1px;
+    }
+    .autoCaps{
+        text-transform: capitalize;
+    }
+</style>
+<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 ml-auto col-xs-12">
+	<h1 class="text-white d-sm-block">
+		Sign Up 
+	</h1>
+	<div class="row">
+        <div class="col-12 col-sm-12">   
+            <div class="panel">
+                <h2 class="pl-4 pt-2">Customer's Information</h2>
+                <form id="frmSignUp" class="needs-validation" novalidate>
+                    <div class="panel-container show panel-container-grid">
+                        <div class="panel-content">
+                            <div class="pl-4 pr-4">
+                    		    <div id="companySaveDiv" class="row">
+                    		        <input type="hidden" id="company_id" name="company_id"/>
+                    		        <div class="col-md-4 col-12 mb-1">
+                            		    <label for="" class="col-form-label control-label"><b>Company Name</b><span class="text-danger">*</span></label>  
+                                        <input type="text" id="company_name" name="company_name" class="form-control form-control-sm" required autoComplete="off"> 
+                            		</div>
+                    		        
+                    		        <div class="col-md-4 col-12 mb-1">
+                            		    <label for="" class="col-form-label control-label"><b>Contact Name</b><span class="text-danger">*</span></label>  
+                                        <input type="text" id="contact_name" name="contact_name" class="form-control form-control-sm autoCaps" required autoComplete="off"> 
+                            		</div>
+                            		
+                            		<div class="col-md-4 col-12 mb-1">
+                            		    <label for="" class="col-form-label control-label"><b>TIN #</b><span class="text-danger">*</span></label>  
+                                        <input type="text" id="company_tin" name="company_tin" class="form-control form-control-sm" required autoComplete="off">
+                            		</div>
+                            		
+                            		<div class="col-md-4 col-12 mb-1">
+                            		    <label for="" class="col-form-label control-label"><b>Company Address</b><span class="text-danger">*</span></label>  
+                                        <input type="text" class="form-control form-control-sm pl-2 autoCaps" id="company_address" name="company_address" autocomplete="off" required placeholder="Building No, Street, Barangay"/>
+                            		</div>
+                    		        
+                    		        <div class="col-md-4 col-12 mb-1">
+                            		    <label for="" class="col-form-label control-label"><b>Province/State</b><span class="text-danger">*</span></label>  
+                                        <select id="state_id" class="form-control form-control-sm" required autoComplete="off"></select>
+                            		</div>
+                    		       
+                    		        <div class="col-md-4 col-12 mb-1">
+                            		    <label for="" class="col-form-label control-label"><b>City</b><span class="text-danger">*</span></label>  
+                                        <select id="city_id" name="city_id" class="form-control form-control-sm" required autoComplete="off"></select>
+                            		</div>
+                                    
+                                    <div class="col-md-4 col-12 mb-1">
+                            		    <label for="" class="col-form-label control-label"><b>Landline #</b><span class="text-danger">*</span></label>  
+                                        <input type="text" id="company_landline" name="company_landline" class="form-control form-control-sm" data-inputmask="'mask': '(999) 999-9999'" im-insert="true" placeholder="(123) 456-7890"  maxlength="14" required autoComplete="off">
+                            		</div>
+                        			
+                            		<div class="col-md-4 col-12 mb-1">
+                            		    <label for="" class="col-form-label control-label"><b>Mobile #</b><span class="text-danger">*</span></label>  
+                                        <input type="tel" id="company_mobile" name="company_mobile" class="form-control form-control-sm" placeholder="888 888 8888"  maxlength="12" required autoComplete="off">
+                            		</div>
+                                    
+                                    <!--<div class="col-md-4 col-12 mb-2">
+                            		    <label for="" class="col-form-label control-label"><b>Bank #</b><span class="text-danger">*</span></label>  
+                                        <select id="bank_id" name="bank_id" class="form-control form-control-sm" required autoComplete="off"></select>
+                            		</div>-->
+                            		 <input type="hidden" id="bank_id" name="bank_id" class="form-control form-control-sm" required autoComplete="off">
+                            		 <input type="hidden" id="account_no" name="account_no" class="form-control form-control-sm" required autoComplete="off">
+                        			<!--<div class="col-md-4 col-12 mb-2">
+                            		    <label for="" class="col-form-label control-label"><b>Account #</b><span class="text-danger">*</span></label>  
+                                        <input type="text" id="account_no" name="account_no" class="form-control form-control-sm" required autoComplete="off">
+                            		</div>-->
+                            		
+                            		<div class="col-md-4 col-12 mb-2">
+                                       <label class="form-label" for="inputGroupFile01">Photo </label>
+                                       <div class="input-group">
+                                            <input name="file" id="file" type="file" accept="image/x-png, image/jpeg"  class="form-control browse text-dark" style="height:39px;"/>
+                                       </div>
+                                    </div>
+                            		
+                                    <div class="col-md-6 col-12 mb-2">
+                                        <h5 class="frame-heading">Collection / Loading Merchant<span class="text-danger">*</span></h5>
+                                        <di class="frame-wrap">
+                                            <div class="custom-control custom-checkbox custom-control-inline">
+                                                <input id="is_zfare" name="is_zfare" type="checkbox" value="Y" class="custom-control-input">
+                                                <label class="custom-control-label" for="is_zfare">Fare Collection</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox custom-control-inline">
+                                                <input id="is_zload" name="is_zload" type="checkbox" value="Y" class="custom-control-input">
+                                                <label class="custom-control-label" for="is_zload">Loading Merchant</label>
+                                            </div>
+                                        </di>
+                                    </div>
+                    		    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h2 class="pl-4 pt-2">User's Information</h2>
+                    <div class="panel-container show panel-container-grid">
+                        <div class="panel-content">
+                            <div class="pl-4 pr-4">
+                    		    <div id="usersSaveDiv" class="row">
+                    		        <input type="hidden" id="companyId" name="company_id"  value="7"/>
+                    		        
+                    		        <div class="col-md-4 col-12 mb-1">
+                            		    <label for="" class="col-form-label control-label"><b>Login (Email Address)</b><span class="text-danger">*</span></label>  
+                                        <input type="email" id="logon" name="logon" class="form-control form-control-sm" placeholder="email@gmail.com" required autoComplete="off">
+                            		</div>
+                    		        
+                    		        <div class="col-md-4 col-12 mb-1">
+                            		    <label for="" class="col-form-label control-label"><b>Password</b><span class="text-danger">*</span></label>
+                            		    <div class="input-group bg-white shadow-inset-2">
+                                            <input type="password" id="dummyPassword" class="form-control form-control-sm" required autoComplete="off">
+                                            <div class="input-group-append">
+                                                <span toggle="#password-field" class="input-group-text fas fa-eye py-1 pt-1 px-3 toggle-dummy-password bg-transparent"></span>
+                                            </div>
+                                        </div>
+                            		</div>
+                    		        
+                    		        <div class="col-md-4 col-12 mb-1">
+                            		    <label for="" class="col-form-label control-label"><b>Confirm Password</b><span class="text-danger">*</span></label>  
+                                        <div class="input-group bg-white shadow-inset-2">
+                                            <input type="password" id="password" name="password" class="form-control form-control-sm" required autoComplete="off">
+                                            <div class="input-group-append">
+                                                <span toggle="#password-field" class="input-group-text fas fa-eye py-1 pt-1 px-3 toggle-password bg-transparent"></span>
+                                            </div>
+                                        </div>
+                                        <span id="error" class="text-danger hide">Password must be the same.</span>
+                            		</div>
+                    		        
+                    		        <div class="col-md-4 col-12 mb-1">
+                            		    <label for="" class="col-form-label control-label"><b>Last Name</b><span class="text-danger">*</span></label>  
+                                        <input type="text" id="last_name" name="last_name" class="form-control form-control-sm autoCaps" required autoComplete="off">
+                            		</div>
+                    		        
+                        			<div class="col-md-4 col-12 mb-1">
+                            		    <label for="" class="col-form-label control-label"><b>First Name</b><span class="text-danger">*</span></label>  
+                                        <input type="text" id="first_name" name="first_name" class="form-control form-control-sm autoCaps" required autoComplete="off">
+                            		</div>
+                            		
+                        			<div class="col-md-4 col-12 mb-1">
+                            		    <label for="" class="col-form-label control-label"><b>Middle Name</b></label> 
+                            		    <div class="input-group bg-white shadow-inset-2">
+                                            <input type="text" id="middle_name" name="middle_name" class="form-control form-control-sm autoCaps" autoComplete="off">
+                                            <div class="input-group-append ml-1">
+                                                <select id="name_suffix" name="name_suffix" class="form-control form-control-sm autoCaps" autoComplete="off"></select>
+                                            </div>
+                                        </div>
+                            		</div>
+                    		    </div>
+                    		    <div class="row">
+                        		    <div class="col-12 justify-content-center d-flex">
+                        				<button id="btnSubmit" type="submit" class="btn btn-primary btn-md col-5 ml-1" title="Save">Register Now</button>
+                        			</div>
+                        		</div>
+                        		
+                        		<div class="col-lg-12 pl-lg-1 my-2 text-center">
+                        			Member click here >  <a href="/" id="btnSignUp" class="">Sign In</a>
+                        		</div>
+                        	</div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" title="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body panel" style="margin-bottom:0">
+                <p id="msg">Are you sure you want to save this data?</p>
+            </div>
+            <div class="modal-footer">
+                <button id="btnSave" type="button" class="btn btn-primary btn-sm">Yes</button>
+                <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>

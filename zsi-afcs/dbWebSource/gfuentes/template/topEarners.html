@@ -1,0 +1,78 @@
+<script type="text/javascript" src="/scripts/print.min.js"></script>
+<style>
+  
+    .zGraph{  
+        width: 100%;
+        height: 400px;
+    }
+    
+</style>
+ 
+
+<div class="panel main">
+    <div class="panel-container">
+        <div class="panel-content">
+            <div class="col-md-12 col-sm-12 col-xs-12" id="nonBankPersonnel">    
+                <div class="row mt-3"> 
+                    <div class="col-md-12 col-sm-12 col-12">
+                        <div class="panel mb-0">
+                            <div class="panel-hdr text-primary">
+                                <h2>
+                                    <span class="mr-2"><i class="far fa-chart-pie"></i></span> <span class="mr-2" id="hdrTopEarners">Top Earners </span> 
+                                </h2> 
+                                <div class="panel-toolbar"> 
+                                    <button class="btn btn-panel waves-effect waves-themed far fa-window-minimize" data-action="panel-collapse" data-offset="0,10" data-original-title="Collapse" data-toggle="tooltip" title="Collapse"></button>
+                                    <button class="btn btn-panel waves-effect waves-themed fas fa-expand" data-action="panel-fullscreen" data-offset="0,10" data-original-title="Fullscreen" data-toggle="tooltip" title="Expand"></button> 
+                                </div>
+                            </div>
+                            <div class="panel-container show">
+                                <div class="panel-content">
+                                    <div class="panel-container collapse show">
+                                        <div class="row">
+                                    	    <div class="col-sm-6 col-md-2 col-xs-12">
+                                    		    <label for="customer" class="col-form-label text-label">Year</label>   
+                                                <select  id="year" class="form-control form-control-sm"></select>
+                                    		</div>  
+                                    		<div class="col-sm-6 col-md-2 col-xs-12 ">
+                                    		    <label for="" class="col-form-label text-label">Month</label>  
+                                    		    <div class="input-group"> 
+                                    		        <select  id="month" class="form-control form-control-sm"></select>
+                                                    <div class="input-group-append">
+                                                        <button id="btnFilterEarners" class="btn-sm btn btn-primary btn-outline-default text-white hvr-sweep-to-left" type="button" title="Filter">
+                                                          <i class="fas fa-filter"></i>
+                                                        </button>
+                                                    </div> 
+                                                </div>
+                                    		</div> 
+                                    	</div>
+                                        <div class="row mt-3 gridCollapse"> 
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                <div id="graphTopEarners" class="zGraph"></div> 
+                                            </div>
+                                        </div> 
+                                    	<div class="row mt-3 gridCollapse"> 
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                <div id="gridTopEarners" class="zGrid"></div> 
+                                            </div>
+                                        </div> 
+                                    </div> 
+                                </div>
+                            </div> 
+                        </div> 
+                    </div> 
+                </div> 
+            </div>
+            <div class="panel-content row mb-3" id="newDiv">   
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+

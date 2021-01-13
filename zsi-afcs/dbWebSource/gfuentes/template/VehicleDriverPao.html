@@ -1,0 +1,690 @@
+<script type="text/javascript" src="/scripts/qrcode.min.js"></script>
+<style>
+    #employee{
+        margin-bottom:10px;
+    }
+    #employee .zGridPanel .zHeaders .item .title .text{
+        width:100%;
+    }
+    #user-box{
+        top:100px;
+        background-color: #fff;
+        height: 250px;
+        width: 250px;
+        left: 360px;
+        position: absolute;
+        display:none;
+        webkit-box-shadow: 30px 30px 7px -1px rgba(0,0,0,0.58);
+        -moz-box-shadow: 30px 30px 7px -1px rgba(0,0,0,0.58);
+        box-shadow: 30px 30px 7px -1px rgba(0,0,0,0.58);
+        border: 2px solid #fff;
+        border-radius: 10px;
+        overflow:hidden;
+    }
+      #user-box img{ 
+      height: 100%;
+      width: 100%; 
+      
+    }
+    div .font-sm{
+        font-size: 7px;
+    }
+    div .f-9{
+        font-size: 9px;
+    }
+    .btn{
+        padding: 0.3rem 1.125rem !important;
+    }
+     .modal-backdrop {
+            position: inherit;
+    }
+    
+</style>
+<div class="panel">
+    <div class="panel-container">
+        <div class="panel-content">
+            <div class="row">
+                <div class="col-sm-4 col-md-4 col-xl-4 col-12 mb-2 justify-content-center d-flex">
+                    <div id="clientQRCode" style="width:150px; height:150px;"></div>
+                </div>
+                <div class="col-sm-4 col-md-4 col-xl-4 col-12 mb-2 justify-content-center d-flex">
+                    <h1 id="clientName"></h1>
+                </div>
+                <div class="col-sm-4 col-md-4 col-xl-4 col-12 mb-2 justify-content-center d-flex">
+                    <img id="companyLogo" style="width:150px; height:auto;" aria-roledescription="logo">
+                </div>
+            </div>
+            <ul class="nav nav-tabs main-nav-tabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#nav-routes" role="tab" aria-controls="nav-routes"><i class="fas fa-map-marker-alt"></i> Routes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#nav-vehicles" role="tab" aria-controls="nav-vehicles"><i class="fal fa-bus mr-1"></i> Vehicles</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#nav-drivers" role="tab" aria-controls="nav-drivers"><i class="fal fa-user mr-1"></i> Drivers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#nav-pao" role="tab" aria-controls="nav-pao"><i class="fal fa-user mr-1"></i> PAO</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#nav-devices" role="tab" aria-controls="nav-devices"><i class="fas fa-mobile-android-alt mr-1"></i> Devices</a>
+                </li>
+            </ul> 
+            <div class="tab-content border border-top-0 p-3">
+                <div role="tabpanel" class="tab-pane fade show active" id="nav-routes">
+                    <div class="zContainer">
+                        <div class="row">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-1">
+                                 <div id="gridRoutes" class="zGrid"></div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">   
+                                <button type="button" class="btn btn-primary btn-sm hvr-sweep-to-left" id="btnSaveRoute">
+                                    <i class="far fa-save"></i> Save
+                                </button>
+                                <button type="button" class="btn btn-primary btn-sm hvr-sweep-to-left" id="btnDeleteRoute">
+                                    <i class="far fa-trash"></i> Delete
+                                </button>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="nav-vehicles">
+                    <div class="row"> 
+                        <div class="col-12 col-sm-5 col-md-4 mb-1"> 
+                            <div class="input-group" style="flex-wrap: inherit !important;">
+                                <select class="form-control form-control-sm" id="route_id" required autocomplete="off"></select>
+                                <div class="input-group-append">
+                                    <button id="btnFilterVal" class="btn-sm btn btn-primary btn-outline-default text-white hvr-sweep-to-left" type="button" title="Filter">
+                                        <i class="fas fa-filter"></i>
+                                    </button>
+                                </div>
+                            </div>
+                		</div>
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-1">
+                            <div class="row">
+                                <div class="form-row hide mb-3" id="linkDiv" style="margin-left: 20px">
+                                    <a href="javascript:void(0)" id="forExp">For Expiration</a> &nbsp;|&nbsp;
+                                    <a href="javascript:void(0)" id="forRen">For Renewal</a> 
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-1" id="forGrid"> 
+                                     <div id="gridVehicles" class="zGrid mb-1"></div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-1 hide" id="forExpiration"> 
+                                    <div id="gridExpiration" class="zGrid mb-1 "></div>
+                                </div>
+                                 
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">    
+                                    <div class="button-group">     
+                                        <button type="button" class="btn btn-primary btn-sm hvr-sweep-to-left" id="btnSaveVehicles">
+                                            <i class="far fa-save"></i> Save
+                                        </button>
+                                        <button type="button" id="btnUploadExcel" class="btn btn-sm btn-primary hvr-sweep-to-left"><i class="fa fa-upload"></i> Export Excel</button> 
+                                        <button class="btn-sm btn btn-primary hvr-sweep-to-left btnPrint" type="button" title="Print">
+                                           <i class="fas fa-print" disabled></i> Print QR's
+                                        </button>
+                                        <button id="btnPrintAssDriverPAO" class="btn-sm btn btn-primary hvr-sweep-to-left" type="button" title="Print">
+                                           <i class="fas fa-print" disabled></i> Print Assigned Driver/PAO
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="nav-drivers">
+                    <ul class="nav nav-tabs sub-nav-tabs sub-nav-tabs-drivers" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link drivers active" data-toggle="tab" href="#nav-sub-drivers" role="tab">Active</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link drivers" data-toggle="tab" href="#nav-sub-drivers" role="tab">(15)Days for Renewal</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link drivers" data-toggle="tab" href="#nav-sub-drivers" role="tab">(30)Days for Renewal</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link drivers" data-toggle="tab" href="#nav-sub-drivers" role="tab">Expired License</a>
+                        </li> 
+                    </ul>  
+                     <div class="tab-content border-top-1 mt-1">
+                        <div role="tabpanel" class="tab-pane fade show active" id="nav-sub-drivers">
+                            <div class="row"> 
+                                <div class="col-12 col-sm-5 col-md-4 mb-1"> 
+                                    <div class="input-group">
+                                        <input id="searchValDriver" class="form-control form-control-sm pl-2" autocomplete="off" placeholder="Search........">
+                                        <div class="input-group-append">
+                                            <button id="btnSearchValDriver" class="btn-sm btn btn-primary btn-outline-default text-white hvr-sweep-to-left" type="button" title="Search">
+                                                <i class="fas fa-search"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                        		</div>
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-1">
+                                     <div id="gridDriversLicensed" class="zGrid mb-1"></div>
+                                </div>  
+                                <div class="col-12 col-sm-12 col-md-12 col-xl-12">  
+                                    <div class="button-group">   
+                                        <button type="button" class="btn btn-primary btn-sm hvr-sweep-to-left" id="btnSaveDrivers">
+                                            <i class="far fa-save"></i> Save
+                                        </button>
+                                        <button type="button" class="btn btn-primary btn-sm hvr-sweep-to-left" id="btnAddDriver">
+                                        	<span class="fas fa-user-plus"></span> Add
+                                        </button> 
+                                         <button class="btn-sm btn btn-primary hvr-sweep-to-left btnPrintId" type="button" title="Print">
+                                           <i class="fas fa-print" disabled></i> Print ID's
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="nav-pao">
+                    <div class="zContainer">
+                        <div class="row">
+                            <div class="col-12 col-sm-5 col-md-4 mb-1"> 
+                                <div class="input-group">
+                                    <input id="searchValPao" class="form-control form-control-sm pl-2" autocomplete="off" placeholder="Search........">
+                                    <div class="input-group-append">
+                                        <button id="btnSearchValPao" class="btn-sm btn btn-primary btn-outline-default text-white hvr-sweep-to-left" type="button" title="Search">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                    		</div>
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-1">
+                                 <div id="gridPAO" class="zGrid"></div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12 col-xl-12">
+                                <div class="button-group">   
+                                    <button type="button" class="btn btn-primary btn-sm hvr-sweep-to-left" id="btnSavePaos">
+                                        <i class="far fa-save"></i> Save
+                                    </button>
+                                    <button type="button" class="btn btn-primary btn-sm hvr-sweep-to-left" id="btnAddPao">
+                                    	<span class="fas fa-user-plus"></span> Add
+                                    </button>   
+                                     <button class="btn-sm btn btn-primary hvr-sweep-to-left btnPrintId" type="button" title="Print">
+                                       <i class="fas fa-print" disabled></i> Print ID's
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="nav-devices">
+                    <div class="zContainer">
+                        <div class="row">
+                            <div class="col-12 col-sm-5 col-md-4 mb-1"> 
+                                <div class="input-group">
+                                    <input id="searchValDevice" class="form-control form-control-sm pl-2" autocomplete="off" placeholder="Search........">
+                                    <div class="input-group-append">
+                                        <button id="btnSearchValDevice" class="btn-sm btn btn-primary btn-outline-default text-white hvr-sweep-to-left" type="button" title="Search">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                    		</div>
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-1">
+                                 <div id="gridDevices" class="zGrid"></div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">   
+                                <button type="button" class="btn btn-primary btn-sm hvr-sweep-to-left" id="btnSaveDevices" data-toggle="tooltip" title="Save">
+                                    <i class="far fa-save"></i> Save
+                                </button>
+                                <button class="btn-sm btn btn-primary hvr-sweep-to-left btnPrintDevicesQr" type="button" title="Print">
+                                   <i class="fas fa-print" disabled></i> Print QR's
+                                </button>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>
+<div class="row mb-1 hide">
+    <div id="printThis" class="col-12 col-sm-12">
+        <div class="zTable">
+            <table id="qrTable">
+                <thead>
+                    <tr>
+                        <th style="width:120px;text-align:left;"></th>
+                        <th style="width:120px;text-align:left;"></th>
+                        <th style="width:120px;text-align:left;"></th>
+                    </tr>
+                </thead>
+                <tbody class="mt-4"></tbody>
+            </table>
+            <table >
+            </table>
+        </div>
+    </div>
+</div>
+<div class="row mb-1 hide">
+    <div id="printThisIdTbl" class="col-12 col-sm-12">
+        <div class="zTable">
+            <table id="createIdTable">
+                <thead>
+                    <tr>
+                        <th style="width:204px;text-align:left;"></th>
+                        <th style="width:204px;text-align:left;"></th>
+                        <th style="width:204px;text-align:left;"></th>
+                    </tr>
+                </thead>
+                <tbody class="mt-4"></tbody>
+            </table>
+            <table >
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-1 hide">
+    <div id="printThisIdTblAssDriverPAO" class="col-12 col-sm-12">
+        <div class="zTable">
+            <table id="tableAssDriverPao" style="border-collapse: collapse;width: 100%;">
+                <thead>
+                    <th style="padding-top: 12px;padding-bottom: 12px;text-align: left;color: black;border: 1px solid #404040;padding: 8px;text-align:center;">Vehicle Plate No.</th>
+                    <th style="padding-top: 12px;padding-bottom: 12px;text-align: left;color: black;border: 1px solid #404040;padding: 8px;text-align:center;">Assignment Date</th>
+                    <th style="padding-top: 12px;padding-bottom: 12px;text-align: left;color: black;border: 1px solid #404040;padding: 8px;text-align:center;">Driver(s)</th>
+                    <th style="padding-top: 12px;padding-bottom: 12px;text-align: left;color: black;border: 1px solid #404040;padding: 8px;text-align:center;">PAO(s)</th>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="modal" id="modalDriverPaoAssignment" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"> Title </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" title="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                
+                
+                <ul class="nav nav-tabs main-nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#nav-ongoing" role="tab" aria-controls="nav-ongoing">On Going</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#nav-history" role="tab" aria-controls="nav-history">History</a>
+                    </li>
+                </ul>
+                <div class="tab-content border border-top-0 p-3">
+                    <div role="tabpanel" class="tab-pane fade show active" id="nav-ongoing">
+                        <div class="zContainer">
+                            <div class="row">
+                                <div class="col-12 col-sm-6 col-md-4 mb-1"> 
+                                    <div class="input-group">
+                                        <input id="filterAssDriverPaoDate" class="form-control form-control-sm pl-2" autocomplete="off">
+                                        <div class="input-group-append">
+                                            <button id="btnSearchValAssDriverPao" class="btn-sm btn btn-primary btn-outline-default text-white hvr-sweep-to-left" type="button" title="Filter">
+                                                <i class="fas fa-filter"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                        		</div>
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-1">
+                                    <div id="gridDriverPaoAssignment" class="zGrid"> </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                    <button type="button" id="btnSaveDriverPaoAssignment" class="btn btn-primary btn-sm hvr-sweep-to-left"><i class="far fa-save"></i> Save</button>
+                                    <button type="button" id="btnDeleteDriverPaoAssignment" class="btn btn-primary btn-sm hvr-sweep-to-left"><i class="fas fa-trash-alt"></i> Delete</button>    
+                                </div>
+                           </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="nav-history">
+                        <div class="zContainer">
+                            <div class="row"> 
+                                <div class="col-md-4 col-sm-4 col-12 mb-1">
+                                    <label for="" class="col-form-label control-label"><b>From Date:</b></label>
+                                    <input type="text" class="form-control form-control-sm desc-prop-group pl-2" id="history_frm" autocomplete="off">
+                                </div>
+                                <div class="col-md-6 col-xl-6 col-sm-6 col-12 mb-1">
+                                    <label for="" class="col-form-label control-label"><b>To Date:</b></label>
+                                    <div class="input-group" id="searchGroup">
+                                        <input type="text" class="form-control form-control-sm desc-prop-group pl-2" id="history_to" autocomplete="off">
+                                        <div class="input-group-append">
+                                            <button id="btnFilterHistory" class="btn-sm btn btn-primary btn-outline-default text-white hvr-sweep-to-left" type="button" title="Filter">
+                                               <i class="fas fa-filter"></i>
+                                            </button>
+                                        </div>
+                                        <div class="input-group-append ml-1">
+                                            <button id="btnResetValHistory" class="btn-sm btn btn-primary btn-outline-default text-white hvr-icon-spin hvr-sweep-to-left" type="button" title="Reset">
+                                               <i class="far fa-refresh hvr-icon"></i> Reset
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="historyId" class="col-12 col-sm-12 col-md-12 col-xl-12 hide">
+                                    <div id="gridDriverPaoAssignmentHistory" class="zGrid mb-1"></div> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="modalVehicleId" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="vertical-alignment-helper modal-dialog modal-sm" role="document">
+        <div class="modal-content vertical-align-center">
+            <form id="frm_modalVehicleId">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" title="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body panel">
+                    <div class="card-body text-center">
+                        <div class="justify-content-center d-flex mb-1" >
+                            <div id="qrcodeVehicles" style="width:150px; height:150px;"></div>
+                        </div>
+                        <div class="text-center">
+                            <div id="plateNoId"><h1 class="m-0 font-weight-bold"><u></u></h1></div>
+                            <p>PLATE NUMBER</p>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal" id="modalViewQR" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="vertical-alignment-helper modal-dialog modal-sm" role="document">
+        <div class="modal-content vertical-align-center">
+            <form id="frm_modalQR">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" title="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body panel">
+                    <div class="justify-content-center d-flex mb-2" >
+                        <div id="qrcode" style="width:150px; height:150px;"></div>
+                    </div>
+                    <div class="text-center">
+                        <div id="serialNo"><h1 class="m-0 font-weight-bold"><u></u></h1></div>
+                        <p>SERIAL NUMBER</p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="modalPao" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="vertical-alignment-helper modal-dialog modal-sm" role="document">
+        <div class="modal-content vertical-align-center">
+            <form id="frm_modalPao">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" title="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body panel">
+                    <div class="justify-content-center d-flex mb-2" >
+                        <div id="qrcodeDriverPao" style="width:150px; height:150px;"></div>
+                    </div>
+                    <div class="text-center">
+                        <div><h1 class="m-0 font-weight-bold"><u id="nameId"></u></h1></div>
+                        <p>NAME</p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" title="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body panel" style="margin-bottom:0">
+                <p id="msg"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnPrintSaveId" class="btn btn-primary btn-sm hvr-sweep-to-left">Yes</button>
+                <button type="button" class="btn btn-primary btn-sm hvr-sweep-to-left" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="myModalPrintAssDriverPAO" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" title="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body panel" style="margin-bottom:0">
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-12">
+                        <div class="col-12">
+                            <p><b class="text-danger">NOTE</b>: Please select desired assigned date to print.</p>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-12">
+                            <label for="" class="col-form-label control-label"><b>From Date:</b></label>
+                            <input id="assignedDriverPAOFrm" class="form-control form-control-sm pl-2">
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-12">
+                            <label for="" class="col-form-label control-label"><b>To Date:</b></label>
+                            <input id="assignedDriverPAOTo" class="form-control form-control-sm pl-2">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnPrintSaveAssDriverPAO" class="btn btn-primary btn-sm hvr-sweep-to-left">Print</button>
+                <button type="button" class="btn btn-primary btn-sm hvr-sweep-to-left" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="modalRouteNos" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <form id="frm_modalRouteDetails">
+                <div class="modal-header">
+                    <h5 class="modal-title"> Title </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" title="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul class="nav nav-tabs main-nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#nav-routeno" role="tab" aria-controls="nav-routeno"><i class="fas fa-map-signs"></i> Route No.</a>
+                        </li>
+                        <li class="nav-item hide">
+                            <a class="nav-link" data-toggle="tab" href="#nav-routeDtls" role="tab" aria-controls="nav-routeDtls"><i class="fas fa-map mr-1"></i> Route Details</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content border border-top-0 p-3">
+                        <div role="tabpanel" class="tab-pane fade show active" id="nav-routeno">
+                            <div class="zContainer">
+                                <div class="row">
+                                    <div class="col-12 col-sm-5 col-md-4 mb-1"> 
+                                        <div class="input-group" style="flex-wrap: inherit !important;">
+                                            <select id="route_id2" class="form-control form-control-sm" autocomplete="off"></select>
+                                            <div class="input-group-append">
+                                                <button id="btnFilterValRouteId" class="btn-sm btn btn-primary btn-outline-default text-white hvr-sweep-to-left" type="button" title="Filter">
+                                                    <i class="fas fa-filter"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                            		</div>
+                                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-1">
+                                        <div id="gridRouteNos" class="zGrid"> </div>
+                                    </div>
+                               </div>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="nav-routeDtls">
+                            <div class="zContainer">
+                                <div class="row">   
+                            		<div class="col-sm-6 col-md-4 col-xs-12">
+                            		   <div class="input-group" style="flex-wrap: inherit !important;">
+                                            <select id="route_no" class="form-control form-control-sm" autocomplete="off"></select>
+                                            <div class="input-group-append">
+                                                <button id="btnFilterValRouteNo" class="btn-sm btn btn-primary btn-outline-default text-white hvr-sweep-to-left" type="button" title="Filter">
+                                                    <i class="fas fa-filter"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                            		</div>
+                            		<div class="col-sm-6 col-md-1 col-xs-12"> </div> 
+                            		<div class="col-sm-6 col-md-4 col-xs-12">
+                            		    <button type="button" class="btn btn-primary btn-sm" onClick="vehicledriverpao.displayBaseComputation()">Fare Computation</button>
+                            		</div> 
+                                </div>		
+                                <div class="row mt-2">  
+                                    <div class="col-12 col-sm-12 col-md-12 col-xl-12">
+                                        <div id="gridRouteDetails" class="zGrid mb-1"></div> 
+                                    </div> 
+                                    <div class="col-12 col-sm-12 col-md-12 col-xl-12 mt-2">
+                                        <button type="button" class="btn btn-primary btn-sm btn-ol btnExport mt-1 hvr-sweep-to-left" download="testing.xls" >Export to Excel</button> 
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal" id="fareComputationModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <form id="">
+                <div class="modal-header">
+                    <h5 class="modal-title">Fare Computation </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" title="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body"> 
+                    <div class="tab-content border border-top-0 p-3">  
+                        <div class="zContainer">
+                            <div class="row"> 
+                                <div class="col-12 col-md-2">
+                        		    <label for="" class="col-form-label control-label"><b>Base Fare</b></label>
+                                    <input type="text" value="13" class="form-control form-control-sm autoCaps pl-2 " id="base_fare" autocomplete="off"/> 
+                        		</div> 
+                        		<div class="col-12 col-md-4">
+                        		    <label for="" class="col-form-label control-label"><b>From</b></label> 
+                                    <select type="text" class="form-control form-control-sm " id="from_location"   name="from_location" autocomplete="off"></select>
+                        		</div> 
+                        		<div class="col-12 col-md-3">
+                        		    <label for="" class="col-form-label control-label"><b>Km</b></label> 
+                                    <label class="form-control form-control-sm autoCaps pl-2" id="from_km" name="from_km" autocomplete="off"> </label>
+                        		</div> 
+                            </div> 
+                            <div class="row"> 
+                                <div class="col-12 col-md-2">
+                        		    <label for="" class="col-form-label control-label"><b>Base Km</b></label>
+                                    <input type="text" value="4" class="form-control form-control-sm autoCaps pl-2" id="base_km"   name="base_km" autocomplete="off"/> 
+                        		</div> 
+                        		<div class="col-12 col-md-4">
+                        		    <label for="" class="col-form-label control-label"><b>To</b></label> 
+                                    <select type="text" class="form-control form-control-sm " id="to_location" disabled="disabled"  name="to_location" autocomplete="off"></select>
+                        		</div>
+                        		<div class="col-12 col-md-3">
+                        		    <label for="" class="col-form-label control-label"><b>Km</b></label> 
+                                    <label class="form-control form-control-sm autoCaps pl-2" id="to_km" name="to_km" autocomplete="off"> </label>
+                        		</div> 
+                            </div> 
+                            <div class="row">  
+                        		<div class="col-12 col-md-2">
+                        		    <label for="" class="col-form-label control-label"><b>Succeding Km Fare</b></label>
+                                    <input type="text" value="1.8" class="form-control form-control-sm autoCaps pl-2" id="succeding_km_fare"   name="succeding_km_fare" autocomplete="off"/> 
+                        		</div>
+                        		<div class="col-12 col-md-4">
+                        		    <label class="form-label" for="basic-url">Discount</label>
+                                    <div class="input-group">  
+                                        <input type="text" class="form-control form-control-sm autoCaps pl-2" id="discount"   name="discount" autocomplete="off"/>
+                                        <input type="hidden" id="myFraction" name="myFraction" />
+                                        <div class="input-group-append">
+                                            <span id="input-group-sm-size" class="input-group-text form-control">%</span>
+                                        </div>
+                                    </div>
+                        		</div>
+                        		<div class="col-12 col-md-3">
+                        		    <label for="" class="col-form-label control-label"><b>Total Km</b></label>
+                                    <label class="form-control form-control-sm autoCaps pl-2" id="total_km" name="total_km" autocomplete="off"> </label>
+                        		</div>
+                            </div> 
+                            <div class="row"> 
+                                <div class="col-12 col-md-2"></div> 
+                        		<div class="col-12 col-md-4"></div>
+                        		<div class="col-12 col-md-3">
+                        		    <label for="" class="col-form-label control-label"><b>Succeeding Km</b></label>
+                                    <label class="form-control form-control-sm autoCaps pl-2" id="succeeding_km" name="succeeding_km" autocomplete="off"> </label>
+                        		</div>
+                            </div>
+                            <div class="row"> 
+                                <div class="col-12 col-md-2"></div> 
+                        		<div class="col-12 col-md-4"></div>
+                        		<div class="col-12 col-md-3">
+                        		    <label for="" class="col-form-label control-label"><b>Succeeding Fare</b></label>
+                                    <label class="form-control form-control-sm autoCaps pl-2" id="succeeding_fare" name="succeeding_fare" autocomplete="off"> </label>
+                        		</div>
+                            </div>
+                            <div class="row"> 
+                                <div class="col-12 col-md-2"></div> 
+                        		<div class="col-12 col-md-4"></div>
+                        		<div class="col-12 col-md-3">
+                        		    <label for="" class="col-form-label control-label"><b>Total Fare</b></label>
+                                    <label class="form-control form-control-sm autoCaps pl-2" id="total_fare" name="total_fare" autocomplete="off"> </label>
+                        		</div>
+                            </div>
+                            <div class="row"> 
+                                <div class="col-12 col-md-2"></div> 
+                                <div class="col-12 col-md-2"></div> 
+                        		<div class="col-12 col-md-2">
+                        		    <label for="" class="col-form-label control-label"></label>
+                                    <div class="mt-2">
+                                        <button type="button" class="btn btn-primary btn-sm" id="btnCalculate">Calculate Discount</button>
+                                    </div> 
+                        		</div>
+                        		<div class="col-12 col-md-3">
+                        		    <label for="" class="col-form-label control-label"><b>Total Discount</b></label> 
+                                    <label class="form-control form-control-sm autoCaps pl-2" id="total_discount" autocomplete="off"> </label> 
+                        		</div>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+ 
+<ul name="localTemplates">
+    <li name="modalBodyAddDriverPao">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-1">
+                <div id="{{grid}}" class="zGrid"> </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <button type="button" onclick="{{onClickSaveNewDriverPao}}" class="btn btn-primary btn-sm"><i class="far fa-save"></i> Save</button>
+            </div>
+        </div>
+    </li>
+  
+</ul> 

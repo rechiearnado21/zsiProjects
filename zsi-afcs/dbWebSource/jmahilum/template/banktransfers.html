@@ -1,0 +1,90 @@
+<style>
+    .zGrid .zHeaders > .item .title {
+        height: 20px;
+        align-items: center;
+        display: inherit;
+    }
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+        line-height: calc(0.9em + 1rem + 2px);
+    }
+    .select2-container .select2-selection--single {
+        height: calc(1.5em + .2rem + 5px);
+        padding-bottom: 1rem;
+    }
+</style>
+<div class="panel">
+    <div class="panel-container">
+        <div class="panel-content">
+            <div class="col-sm-12 col-md-12 col-lg-12 col-12">
+                <nav>
+                  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active" data-toggle="tab" href="#nav-forTransfer" role="tab" aria-controls="nav-forPosting"> For Transfer </a>
+                    <a class="nav-item nav-link"        data-toggle="tab" href="#nav-Transfered" role="tab" aria-controls="nav-posted">Transferred </a>
+                  </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div role="tabpanel" class="tab-pane fade show active" id="nav-forTransfer">
+                        <div class="mt-2"></div> 
+                        <div class="zContainer"> 
+                            <form id="frm_post"> 
+                                <input type="hidden" id="bank_transfer_id">
+                               <div class="row mb-2"> 
+                                    <div class="col-sm-6 col-md-3 col-xs-12">
+                            		    <label class=" control-label" >Date of Transfer</label>  
+                                        <input type="text" class="form-control pl-2" name="bank_transfer_date" id="bank_transfer_date">
+                            		</div> 
+                                    <div class="col-sm-6 col-md-3 col-xs-12">
+                            		    <label class=" control-label" >Bank</label>  
+                                        <select type="text" class="form-control select2 select2-hidden-accessible" name="bank_id" id="bank_id"></select>
+                            		</div>
+                            		<div class="col-sm-6 col-md-3 col-xs-12">
+                            		    <label class=" control-label" >Bank Reference No</label>  
+                                        <input type="text" class="form-control pl-2" name="bank_ref_no" id="bank_ref_no"> 
+                            		</div>
+                            		 <input type="hidden" class="form-control " name="company_code" id="company_code"> 
+                            		 <input type="hidden" id="transferred_amount" name="transferred_amount">
+                            		<div class="col-sm-6 col-md-3 col-xs-12 mb-1">
+                                         <label class=" control-label" >Posted Date</label>  
+                                        <div class="input-group"> 
+                                            <input type="text" class="form-control pl-2" name="posted_date" id="posted_date">
+                                            <div class="input-group-append">
+                                                <button id="btnFilter" class="btn-sm btn btn-primary btn-outline-default text-white" type="button">
+                                                    <i class="fa fa-filter"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                            	</div> 
+                            </form>
+                            <div class="row">  
+                                     <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-1" id="forGrid">
+                                         <div id="gridBankForTransfer" class="zGrid"></div>
+                                    </div> 
+                                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">  
+                                        <div class="button-group">   
+                                            <button type="button" class="btn btn-primary btn-sm" id="btnSaveTransations">
+                                                <i class="far fa-save"></i> Save
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="nav-Transfered">
+                        <div class="zContainer">
+                            <div class="mt-2"></div> 
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-1">
+                                     <div id="gridBankTransfered" class="zGrid"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           </div>
+        </div>
+    </div> 
+</div>
+ 
+
+    

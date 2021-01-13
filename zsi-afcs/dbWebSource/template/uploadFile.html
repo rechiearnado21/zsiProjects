@@ -1,0 +1,30 @@
+<div class="panel">
+    <div class="panel-container">
+        <div class="panel-content">
+            <form enctype="multipart/form-data" id="frmUploadFile">
+                <div class="row mb-1">  
+                    <label class="col-2 control-label">File Type:</label>
+                    <div class=" col-4">
+                        <select id="tmpData" name="tmpData" class="form-control input-sm"> </select>
+                    </div>
+                </div>
+                <div class="row pb-4">  
+                    <label class="col-2  control-label">Select File:</label>
+                    <div class=" col-3">
+                        <input type="file" class="browse btn btn-primary" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" name="file">
+                    </div>
+                </div>
+                
+                <div class="row">  
+                    <div class="col-3">
+                        <button type="button" onclick="excelFileUpload();" class="btn btn-primary" id="btnUploadFile" style="margin-left: 5px">
+                            <i class="fas fa-upload"></i> Upload
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+ 
+

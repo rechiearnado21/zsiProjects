@@ -1,0 +1,292 @@
+<style>
+a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+}
+
+a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.previous {
+  background-color: #f1f1f1;
+  color: black;
+}
+
+.next {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.round {
+  border-radius: 30%;
+}
+</style>  
+<div class="panel hide" id="panelDeveloper">
+    <div class="panel-container">
+        <div class="panel-content">
+            <div class="zContainer">
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-1">
+                         <div id="gridCompanyInfo" class="zGrid"></div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">    
+                        <div class="button-group">     
+                            <button type="button" class="btn btn-primary btn-sm" id="btnUpdateInfo" >
+                                <i class="far fa-save"></i> Update
+                            </button>   
+                             
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div> 
+<div class="modal zsi-elliptic-top" id="modalCompanyInfo" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-l" role="document">
+        <div class="modal-content"> 
+            <div class="modal-header">
+                <h3 class="modal-title mt-3" style="margin-left: 24%;"></h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" title="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="frm_modalCompanyInfo"> 
+                    <div class="row form-row slider pl-2">
+                        <input type="hidden" name="company_id" id="company_id">
+                        <div class="form-row mb-0">
+                          <i class="far fa-building"></i>&nbsp;&nbsp;<i><u><h4>Company Profile</h4></u></i> 
+                        </div>
+                        <div class="form-row">
+                            <div class="col-12 col-md-12 ">
+                    		    <label for="" class="col-form-label control-label"><b>Company Code</b></label>
+                                <input type="text" class="form-control form-control-sm pl-1" id="company_codes" placeholder="Company Code"/>
+                    		</div>
+                        	<div class="col-12 col-md-12 ">
+                    		    <label for="" class="col-form-label control-label"><b>Company Tin</b></label>  
+                                <input type="text" class="form-control form-control-sm   pl-0" id="company_tins"  readonly >  
+                                <input type="hidden" class="form-control form-control-sm  border-left-0 bg-transparent pl-1" id="company_tin" name="company_tin" >
+                    		</div>
+                        	<div class="col-12 col-md-12 ">
+                    		    <label for="" class="col-form-label control-label"><b>Company Name</b></label> 
+                    		    <input type="text" class="form-control form-control-sm  border-left-0 bg-transparent pl-1" id="company_name" name="company_name">
+                                
+                    		</div>
+                    		<div class="col-12 col-md-12 ">
+                    		    <label for="" class="col-form-label control-label"><b>Contact Name</b><span class="text-danger">*</span></label> 
+                                <input type="text" class="form-control form-control-sm  border-left-0 bg-transparent pl-1" id="contact_name" name="contact_name" autocomplete="off" placeholder="Contact Name">
+                                
+                    		</div> 
+                        </div>
+                    </div>
+                    <div class="row form-row slider pl-2">
+                        <div class="form-row mt-3">
+                           <i class="far fa-phone-volume"></i>&nbsp;&nbsp;<i><u><h4>Company Contact Information</h4></u></i> 
+                        </div>
+                        <div class="form-row">
+                            <div class="col-12 col-md-12 ">
+                    		    <label for="" class="col-form-label control-label"><b>Company Mobile</b><span class="text-danger">*</span></label>
+                                <input type="text" class="form-control form-control-sm border-left-0 bg-transparent pl-1" id="company_mobile" name="company_mobile" placeholder="Company Mobile">
+                    		</div>
+                    		
+                    		<div class="col-12 col-md-12 ">
+                    		    <label for="" class="col-form-label control-label"><b>Company Landline</b><span class="text-danger">*</span></label> 
+                                <input type="text" class="form-control form-control-sm  border-left-0 bg-transparent pl-1" id="company_landline" name="company_landline" placeholder="Company Landline"> 
+                    		</div>
+                    		
+                    		<div class="col-12 col-md-12 ">
+                    		    <label for="" class="col-form-label control-label"><b>Email Address</b></label>
+                                <input type="text" class="form-control form-control-sm  border-left-0 bg-transparent pl-1" id="emal_add" readonly >
+                    		</div>
+                    		
+                    		<div class="col-12 col-md-12 ">
+                    		    <label for="" class="col-form-label control-label"><b>Company Address</b><span class="text-danger">*</span></label> 
+                                <input type="text" class="form-control form-control-sm  border-left-0 bg-transparent pl-1" id="company_address" name="company_address" > 
+                    		</div> 
+                    		<div class="col-12 col-md-12">
+                    		    <label for="" class="col-form-label control-label"><b>Province/State</b></label>  
+                                <select type="text" class="form-control form-control-sm custom-select  pl-1" id="state_id"  autocomplete="off"></select>
+                    		</div>
+                    		<div class="col-12 col-md-12">
+                    		    <label for="" class="col-form-label control-label"><b>City</b><span class="text-danger">*</span></label>  
+                                <select type="text" class="form-control form-control-sm custom-select  pl-1" id="city_id" name="city_id"   autocomplete="off"></select>
+                    		</div>
+                        </div>
+                    </div>
+                    <div class="slider pl-2">
+                        <div class="form-row mt-3">
+                           <i class="far fa-phone-volume"></i>&nbsp;&nbsp;<i><u><h4>Bank Account Profile</h4></u></i> 
+                        </div>
+                        <div class="form-row"> 
+                            <div class="col-12 col-md-12">
+                    		    <label for="" class="col-form-label control-label"><b>Bank</b><span class="text-danger">*</span></label>  
+                                <select type="text" class="form-control form-control-sm custom-select select2 pl-1" id="bank_id" name="bank_id"   autocomplete="off"></select>
+                    		</div>
+                    	    <div class="col-12 col-md-12 ">
+                    		    <label for="" class="col-form-label control-label"><b>Account #</b><span class="text-danger">*</span></label>
+                                <input type="text" class="form-control form-control-sm  border-left-0 bg-transparent pl-1" id="account_no" name="account_no" placeholder="Account Number" > 
+                    		</div>  
+                        </div>
+                    </div>
+                     
+                </form>   
+                <div class=" mt-4" > 
+                    <button type="button" class="btn btn-primary btn-sm mt-2" id="btnSaveUpdateInfo" data-toggle="tooltip" title="Save">
+                        <i class="far fa-save"></i> Save
+                    </button>
+                     <button type="button" class="btn btn-primary btn-sm mt-2 " id="btnUploadLogo" data-toggle="tooltip" title="Save">
+                        <i class="far fa-upload"></i> Upload Logo
+                    </button>
+                </div> 
+            </div> 
+        </div>
+    </div>
+</div> 
+
+<div class="panel hide" id="panelNotDeveloper">
+    <div class="panel-container">
+        <div class="panel-content">
+            <div class="zContainer">
+                <div class="row"> 
+                    <div class="modal-header">
+                        <h3 class="modal-title mt-3"></h3> 
+                    </div> 
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">    
+                        <form id="frm_CompanyInfo"> 
+                            <input type="hidden" id="company_id" name="company_id">
+                            <div class="form-row mb-0">
+                              <i class="far fa-building"></i>&nbsp;&nbsp;<i><h4>Company Profile</h4></i> 
+                            </div>
+                            <div class="form-row">
+                                <div class="input-group input-group-sm bg-white shadow-inset-2">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-transparent border-right-0 py-1 px-3 text-success">
+                                            Company Code :
+                                        </span>
+                                    </div> 
+                                    <input type="text" class="form-control form-control-sm  border-left-0 bg-transparent pl-0" id="company_codes"  readonly >  
+                                    <div class="input-group-append">
+                                        <span class="input-group-text bg-transparent border-right-0 py-1 px-3 text-success">
+                                            Company Tin :
+                                        </span>
+                                    </div>
+                                    <input type="text" class="form-control form-control-sm  border-left-0 bg-transparent pl-0" id="company_tins"  readonly >  
+                                    <input type="hidden" class="form-control form-control-sm  border-left-0 bg-transparent pl-0" id="company_tin" name="company_tin" >  
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-transparent border-right-0 py-1 px-3 text-success">
+                                            Company Name :
+                                        </span>
+                                    </div> 
+                                    <input type="text" class="form-control form-control-sm  border-left-0 bg-transparent pl-0" id="company_name" name="company_name" > 
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-transparent border-right-0 py-1 px-3 text-success">
+                                            Contact Name :
+                                        </span>
+                                    </div> 
+                                    <input type="text" class="form-control form-control-sm  border-left-0 bg-transparent pl-0" id="contact_name" name="contact_name" > 
+                                </div>
+                            </div>
+                             <div class="form-row mt-3">
+                               <i class="far fa-phone-volume"></i>&nbsp;&nbsp;<i><h4>Company Contact Information</h4></i> 
+                            </div>
+                            <div class="form-row">
+                                <div class="input-group input-group-sm bg-white shadow-inset-2">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-transparent border-right-0 py-1 px-3 text-success">
+                                            Company Mobile :
+                                        </span> 
+                                    </div>  
+                                     <input type="text" class="form-control form-control-sm border-left-0 bg-transparent pl-0" id="company_mobile" name="company_mobile">  
+                                    <div class="input-group-append">
+                                        <span class="input-group-text bg-transparent border-right-0 py-1 px-3 text-success">
+                                            Company Landline :
+                                        </span>
+                                    </div>   
+                                    <input type="text" class="form-control form-control-sm  border-left-0 bg-transparent pl-0" id="company_landline" name="company_landline" >  
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-transparent border-right-0 py-1 px-3 text-success">
+                                            Email Address :
+                                        </span>
+                                    </div> 
+                                    <input type="text" class="form-control form-control-sm  border-left-0 bg-transparent pl-0" id="emal_add" readonly > 
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-transparent border-right-0 py-1 px-3 text-success">
+                                            Company Address :
+                                        </span>
+                                    </div> 
+                                    <input type="text" class="form-control form-control-sm  border-left-0 bg-transparent pl-0" id="company_address" name="company_address" > 
+                                </div>
+                            </div>
+                            <div class="form-row pt-3">
+                                <div class="input-group input-group-sm bg-white shadow-inset-2">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-transparent border-right-0 py-1 px-3 text-success">
+                                            Province/State :
+                                        </span> 
+                                    </div>  
+                                     <select  class="form-control form-control-sm  border-left-0 bg-transparent pl-0 " id="state_id"  ></select>   
+                                    <div class="input-group-append">
+                                        <span class="input-group-text bg-transparent border-right-0 py-1 px-3 text-success">
+                                            City :
+                                        </span>
+                                    </div>   
+                                    <select  class="form-control form-control-sm  border-left-0 bg-transparent pl-0 " id="city_id" name="city_id"></select>
+                                    
+                                </div>
+                            </div> 
+                            <div class="form-row mt-3">
+                                <i class="far fa-users"></i>&nbsp;&nbsp;<i><h4>Bank Account Profile</h4></i>
+                            </div> 
+                            <div class="form-row ">
+                                <div class="input-group input-group-sm bg-white shadow-inset-2">
+                        	        <div class="input-group-prepend">
+                                        <span class="input-group-text bg-transparent border-right-0 py-1 px-3 text-success">
+                                            Bank :
+                                        </span>
+                                    </div> 
+                                   <select  class="form-control form-control-sm  border-left-0 bg-transparent pl-0 " id="bank_id" name="bank_id"></select>
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-transparent border-right-0 py-1 px-3 text-success">
+                                            Account No. :
+                                        </span>
+                                    </div> 
+                                    <input type="text" class="form-control form-control-sm  border-left-0 bg-transparent pl-0" id="account_no" name="account_no" >
+                                </div>
+                            </div>
+                             
+                        </form>
+                        <div class=" mt-4" style="float:right;"> 
+                            <button type="button" class="btn btn-primary btn-sm mt-2" id="btnSaveUpdateInfo" data-toggle="tooltip" title="Save">
+                                <i class="far fa-save"></i> Save
+                            </button>
+                             <button type="button" class="btn btn-primary btn-sm mt-2 " id="btnUploadLogo" data-toggle="tooltip" title="Save">
+                                <i class="far fa-upload"></i> Upload Logo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div> 
+<ul name="localTemplates"> 
+    <li name="modalBodyImageUser">
+      <div class="pull-left"><button type="button" onclick="{{onClickUploadImageUser}}" class="btn btn-sm btn-primary"><span class="fas fa-upload"></span> Upload</button></div>
+    </li> 
+</ul> 
+    
+
+
+
+
+
+
+
+
+
+
+ 

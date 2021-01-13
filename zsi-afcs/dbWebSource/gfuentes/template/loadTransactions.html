@@ -1,0 +1,90 @@
+<script type="text/javascript" src="/scripts/print.min.js"></script>
+<style>
+    .zGrid .zHeaders > .item .title {
+        height: 20px;
+        align-items: center;
+        display: inherit;
+    } 
+    @media print {
+         .zRow.zTotal{
+             position:unset;
+         }
+    }
+    .zRow.zTotal, .zRow.zTotal:hover{
+        color: #fff;
+        font-weight: bold;
+    }
+  
+    
+    
+    #gridRecentLoadingTransaction .zHeaders{
+        width: 100%;
+    } 
+  
+</style>
+<div class="panel">
+    <div class="panel-container">
+        <div class="panel-content">
+                
+            <ul class="nav nav-tabs main-nav-tabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#nav-recentTransaction" role="tab" aria-controls="nav-recentTransaction"><i class="far fa-clock"></i> Recent Transaction</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#nav-recentTransaction" role="tab" aria-controls="nav-recentTransaction"><i class="far fa-clock"></i> History Transaction</a>
+                </li> 
+            </ul> 
+            <div class="tab-content border border-top-0 p-3">
+                <div role="tabpanel" class="tab-pane fade show active" id="nav-recentTransaction">   
+                    <div class="tab-content border-top-0">
+                        <div class="tab-pane fade show active" role="tabpanel">
+                            <div class="row" id="dateDiv">   
+                        		<div class="col-sm-6 col-md-3 col-xs-12 ">
+                        		    <label for="" class="col-form-label text-label">From</label> 
+                        		    <input type="text" class="form-control form-control-sm pl-2" id="startTransactionDate"  placeholder="Start date....."/> 
+                        		</div>  
+                        		<div class="col-sm-6 col-md-3 col-xs-12 "  >
+                        		    <label for="" class="col-form-label text-label">To</label>  
+                        		    <div class="input-group" > 
+                        		        <input type="text" class="form-control form-control-sm pl-2" id="endTransactionDate"  placeholder="End date....."/> 
+                                        <div class="input-group-append">
+                                            <button id="btnFilterTransaction" class="btn-sm btn btn-primary btn-outline-default text-white hvr-sweep-to-left" type="button" title="Filter">
+                                              <i class="fas fa-filter"></i>
+                                            </button>
+                                        </div>
+                                        <div class="input-group-append ml-1">
+                                            <button id="btnResetDailyFare" class="btn-sm btn btn-primary btn-outline-default text-white hvr-icon-spin hvr-sweep-to-left" type="button" title="Reset">
+                                               <i class="far fa-refresh hvr-icon"></i> Reset
+                                            </button>
+                                        </div>
+                                    </div>
+                        		</div> 
+                            </div>  
+                            <div class="row mt-3"> 
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div id="gridRecentLoadingTransaction" class="zGrid"></div> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+                <button type="button" class="btn btn-primary btn-sm btn-ol btnExport mt-1 hvr-sweep-to-left" download="testing.xls" >Export to Excel</button>
+                <button type="button" class="btn btn-primary btn-sm hvr-sweep-to-left" id="btnSaveActualAmt">
+                    <i class="far fa-save"></i> Save
+                </button>
+            </div>
+            
+        </div>
+    </div> 
+</div> 
+
+
+
+
+
+
+
+
+
+
+

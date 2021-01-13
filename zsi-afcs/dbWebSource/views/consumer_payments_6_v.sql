@@ -1,0 +1,1 @@
+CREATE VIEW dbo.consumer_payments_6_v AS SELECT * FROM dbo.payments WHERE consumer_id=6

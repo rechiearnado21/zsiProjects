@@ -1,0 +1,6 @@
+CREATE TYPE try_out1_tt AS TABLE(
+id	INT	NULL
+,is_edited	CHAR(1)	NULL
+,name	VARCHAR(50)	NULL
+,email	VARCHAR(50)	NULL
+,password	VARCHAR(30)	NULL)

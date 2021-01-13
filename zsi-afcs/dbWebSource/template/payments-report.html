@@ -1,0 +1,96 @@
+<script type="text/javascript" src="/scripts/print.min.js"></script>
+<style>
+    .zGrid .zHeaders > .item .title {
+        height: 20px;
+        align-items: center;
+        display: inherit;
+    }
+    .btn-outline{height:26px;}
+    
+    @media print {
+         .zRow.zTotal{
+             position:unset;
+         }
+    }
+    
+    #btnFilterVal:disabled {color: #212529;background-color: gray;border-color: #9e9999;}
+</style>
+<div class="panel">
+    <div class="panel-container">
+        <div class="panel-content">
+            <div class="row">
+                <div class="col-sm-6 col-md-3 col-xl-2 col-12 mb-2">
+                    <div class="input-group">
+                        <select  id="routeId" class="form-control form-control-sm"></select>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3 col-xl-2 col-12 mb-2">
+                    <div class="input-group">
+                        <select  id="vehicleForRemit" class="form-control form-control-sm"></select>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3 col-xl-2 col-12 mb-2">
+                    <div class="input-group">
+                        <select  id="driverId" class="form-control form-control-sm"></select>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3 col-xl-2 col-12 mb-2">
+                    <div class="input-group">
+                        <select class="form-control form-control-sm PAOForRemit select" id="PAOForRemitt"></select>
+                    </div>
+                </div>
+                
+                <div class="col-sm-6 col-md-3 col-xl-2 col-12 mb-2">
+                    <div class="input-group">
+                        <select class="form-control form-control-sm paymentTypeId" id="paymentTypeId1"></select>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3 col-xl-2 col-12 mb-2 hide date-range">
+                    <div class="input-group">
+                        <input type="number" class="form-control form-control-sm pl-2" id="posted_date_from" name="posted_date_from"/>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3 col-xl-2 col-12 mb-2 hide date-range">
+                    <div class="input-group">
+                        <input type="number" class="form-control form-control-sm pl-2" id="posted_date_to" name="posted_date_to"/>
+                    </div>
+                    <small id="ermsgId" class="ml-2 hide" style="color:red;"></small>
+                </div>
+                <div class="col-sm-6 col-md-3 col-xl-2 col-12 mb-2">
+                    <div class="input-group">
+                        <button id="filterCol" type="button" class="btn btn-primary form-control text-white btn-sm dropdown-toggle bg-brand-gradient hvr-sweep-to-left" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Date Range
+                        </button>
+                        <div class="dropdown-menu fadeinright dropdown-menu-right" x-placement="bottom-start" style="position: absolute; will-change: top, left; top: 37px; left: 0px;">
+                            <div class="list-group list-group-flush" id="filterColumns">
+                                <div class="list-group-item py-1"><label><input id="weakly" type="radio" name="filter" value="weekly" disabled="disabled"/> Weekly</label></div>
+                                <div class="list-group-item py-1"><label><input id="monthly" type="radio" name="filter" value="monthly"/> Monthly</label></div>
+                                <div class="list-group-item py-1"><label><input id="yearly" type="radio" name="filter" value="yearly"/> Yearly</label></div>
+                            </div>
+                        </div>
+                        <div class="input-group-append ml-1">
+                            <button id="btnFilterVal" class="btn-sm btn btn-primary btn-outline-default text-white hvr-sweep-to-left" type="button" title="Filter">
+                              <i class="fas fa-filter"></i>
+                            </button>
+                        </div>
+                        <div class="input-group-append ml-1">
+                            <button id="btnResetVal" class="btn-sm btn btn-primary btn-outline-default text-white hvr-icon-spin hvr-sweep-to-left" type="button" title="Reset">
+                               <i class="far fa-refresh hvr-icon"></i> Reset
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-1" id="forGrid">
+                     <div id="gridPostedTransactions" class="zGrid"></div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">    
+                    <div class="button-group">     
+                        <button type="button" class="btn btn-primary btn-sm hvr-sweep-to-left" id="btnExportTransations">
+                            <i class="far fa-save"></i> Export To Excel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>

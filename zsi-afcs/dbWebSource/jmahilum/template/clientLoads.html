@@ -1,0 +1,117 @@
+<style>
+    .was-validated .custom-select:invalid + .select2 .select2-selection{
+        border-color: #f30000!important;
+    }
+    .was-validated .custom-select:valid + .select2 .select2-selection{
+        border-color: #1dc9b7!important;
+    }
+    *:focus{
+      outline:0px;
+    }
+    .zGrid .zCell{
+        padding-left: 3px;
+    }
+    .form-control{
+        border-left:none;
+        border-right:none;
+        border-top:none;
+        border-radius:0 0 0 0;
+        padding: 0;
+    }
+</style>
+<div class="panel">
+    <div class="panel-hdr">
+        <div class="d-flex w-100">
+            <div class="mr-auto">
+                <button type="button" class="btn btn-primary btn-sm hvr-sweep-to-left" id="btnNew"><i class="far fa-plus"></i> New</button>
+            </div> 
+        </div>
+    </div>
+    <div class="panel-container">
+        <div class="panel-content">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="zGrid" id="gridClientLoads"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="newClientModal" class="modal fade modal-backdrop-transparent" role="dialog" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-l" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" title="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-12 col-sm-12 col-md-12">
+                    <h3 class="pt-2">Client Load</h3>
+                    <div class="border-top mt-3"></div>
+                    <form id="formClients" class="needs-validation" novalidate>  
+                        <div id="clientInformationDiv" class="row mb-2"> 
+                            <input type="hidden" name="client_load_id" id="client_load_id">
+                            <div class="col-12 col-md-12">
+                    		    <label for="" class="col-form-label control-label"><b>Client</b></label>  
+                                <select type="text" class="form-control form-control-sm" id="client_id" required  name="client_id" autocomplete="off"></select>
+                    		</div>
+                        	<div class="col-12 col-md-12">
+                    		    <label for="" class="col-form-label control-label"><b>Load Date</b></label> 
+                                <input type="text" class="form-control form-control-sm" id="load_date" required  name="load_date" autocomplete="off"/>
+                    		</div>
+                        	<div class="col-12 col-md-12">
+                    		    <label for="" class="col-form-label control-label"><b>Load Amount</b></label>
+                                <input type="text" class="form-control form-control-sm autoCaps" id="load_amount" required  name="load_amount" autocomplete="off"/> 
+                    		</div>
+                    		<div class="col-12 col-md-12">
+                    		    <label for="" class="col-form-label control-label"><b>Ref #</b></label> 
+                                <input type="text" class="form-control form-control-sm" id="ref_no" required  name="ref_no" autocomplete="off" placeholder="Enter ref no"/>
+                    		</div> 
+                    		<div class="col-12 col-md-12">
+                    		    <label for="" class="col-form-label control-label"><b>Transfer</b></label> 
+                                <select type="text" class="form-control form-control-sm select2" id="transfer_type_id" name="transfer_type_id" required  autocomplete="off"></select>
+                    		</div>
+                    		
+                    		<div class="col-12 col-md-12">
+                    		    <label for="" class="col-form-label control-label"><b>Transfer Ref #</b></label>
+                                <input type="text" class="form-control form-control-sm" id="transfer_ref_no" name="transfer_ref_no"  required  autocomplete="off"/>
+                    		</div>  
+                    	</div> 
+                    	<div class="row"> 
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">   
+                                <button id="btnSubmit" type="submit" class="btn btn-primary btn-sm hvr-sweep-to-left" title="Save">
+                                    <i class="far fa-save"></i> Save
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" title="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body panel" style="margin-bottom:0">
+                <p id="msg">Are you sure you want to save this data?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnConfirm" class="btn btn-primary btn-sm hide">Confirm</button>
+                <button type="button" id="btnSave" class="btn btn-primary btn-sm yesno">Yes</button>
+                <button type="button" class="btn btn-primary btn-sm yesno" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>

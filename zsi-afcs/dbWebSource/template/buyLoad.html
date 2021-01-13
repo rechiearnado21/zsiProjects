@@ -1,0 +1,119 @@
+<script type="text/javascript" src="/scripts/qrcode.min.js"></script>
+<!--<script type="text/javascript" src="/scripts/instascan.min.js"></script>-->
+<style>
+    .panel-content{
+        height: inherit;
+    }
+    .calculator {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 400px;
+      width: inherit;
+      margin-top: 10rem;
+    }
+
+    .calculator-screen {
+      width: 100%;
+      height: 80px;
+      border: none;
+      background-color: #252525;
+      color: #fff;
+      text-align: right;
+      padding-right: 20px;
+      padding-left: 10px;
+      font-size: 4rem;
+    }
+
+    .btn-cl {
+      height: 60px;
+      font-size: 1.5rem!important;
+    }
+
+    .all-clear {
+      height: 78%;
+      grid-area: 2 / 4 / 6 / 5;
+      font-size: 1.5rem!important;
+    }
+
+    .calculator-keys {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 20px;
+      padding: 20px;
+    }
+    #vidContainer {
+        display:flex;
+        justify-content:center;
+    	margin: 0px auto;
+    	width: 500px;
+    	height: 375px;
+    	border: 10px #333 solid;
+    }
+    #videoElement {
+        width:inherit;
+    	background-color: #666;
+    }
+    @media only screen and (max-width: 1000px) {
+        .calculator {
+          margin-top: 0rem;
+        }
+    }
+    @media only screen and (max-width: 450px) {
+      .btn-cl {
+          font-size: 0.8rem!important;
+        }
+        .calculator {
+          margin-top: 0rem;
+        }
+    }
+    @media only screen and (max-width: 320px) {
+      .btn-cl {
+          font-size: 0.6rem!important;
+        }
+        .calculator {
+          margin-top: 0rem;
+        }
+    }
+</style>
+<div class="panel">
+    <div class="panel-container">
+        <div class="panel-content">
+            <div class="justify-content-center d-flex">
+                <div id="buyLoad" class="calculator card mb-2">
+                    <form id="buyLoadForm">
+                        <input id="hash_key" name="hash_key" type="hidden" value="">
+                        <input id="amount" name="amount" type="text" class="calculator-screen z-depth-1" value="" readonly/>
+                        <input id="device_id" name="device_id" type="hidden">
+                        <div class="calculator-keys text-center">
+                            <input type="button" onclick="buyLoad.myFunction(this)" value="100" class="btn btn-cl btn-light waves-effect">
+                            <input type="button" onclick="buyLoad.myFunction(this)" value="200" class="btn btn-cl btn-light waves-effect">
+                            <input type="button" onclick="buyLoad.myFunction(this)" value="300" class="btn btn-cl btn-light waves-effect">
+                            <input type="button" onclick="buyLoad.myFunction(this)" value="400" class="btn btn-cl btn-light waves-effect">
+                            <input type="button" onclick="buyLoad.myFunction(this)" value="500" class="btn btn-cl btn-light waves-effect">
+                            <input type="button" onclick="buyLoad.myFunction(this)" value="600" class="btn btn-cl btn-light waves-effect">
+                            <input type="button" onclick="buyLoad.myFunction(this)" value="700" class="btn btn-cl btn-light waves-effect">
+                            <input type="button" onclick="buyLoad.myFunction(this)" value="800" class="btn btn-cl btn-light waves-effect">
+                            <input type="button" onclick="buyLoad.myFunction(this)" value="900" class="btn btn-cl btn-light waves-effect">
+                            <input type="button" onclick="buyLoad.myFunction(this)" value="1000" class="btn btn-cl btn-light waves-effect">
+                            <button id="btnClearAll" type="button" class="all-clear function btn btn-danger btn-sm" value="all-clear">AC</button>
+                        </div>   
+                    </form>
+                </div>
+            </div>
+            <video id="preview" class="d-none"></video>
+            <!--<div id="vidContainer" class="d-none">
+            	<video id="videoElement"></video>
+            </div>-->
+            <div id="qrcode"  style="width:100px; height:100px;position:absolute;display:none;"></div>
+            <select id="qrId" class="hide"></select>
+            <div class="justify-content-center d-flex">
+                <div class="row">
+                    <div class="col-12">
+                        <button id="btnScanQr" class="btn btn-lg btn-primary">Scan QR</button>
+                        <button id="btnPrintQr" class="btn btn-lg btn-primary">Print QR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

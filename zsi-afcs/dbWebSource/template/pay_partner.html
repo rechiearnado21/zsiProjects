@@ -1,0 +1,106 @@
+<script type="text/javascript" src="/scripts/print.min.js"></script>
+<style>
+    .zGrid .zHeaders > .item .title {
+        height: 20px;
+        align-items: center;
+        display: inherit;
+    } 
+    @media print {
+         .zRow.zTotal{
+             position:unset;
+         }
+    }
+    .zRow.zTotal, .zRow.zTotal:hover{
+        color: #fff;
+        font-weight: bold;
+    }
+  
+    .after_modal_appended{  
+        position:relative;
+    }
+    .modal{
+        position: absolute !important;
+    }
+    .modal-backdrop{
+        opacity: 0 !important;
+    }
+    
+    #gridForPostingSummary .zHeaders {
+        width: 1750px;
+    }
+</style>
+<div class="panel">
+    <div class="panel-container">
+        <div class="panel-content">
+            <div class="col-sm-12 col-md-12 col-lg-12 col-12"> 
+                <div class="tab-content" id="nav-tabContent"> 
+                    <div class="row"> 
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div id="gridPayPartner" class="zGrid"></div> 
+                        </div>
+                    </div>
+                    <div class="row MT-2">
+                        <div class="col-12 col-sm-12">   
+                            <button type="button" class="btn btn-primary btn-sm hvr-sweep-to-left" title="Save" id="btnSavePartner">
+                                <i class="far fa-save"></i> Save
+                            </button> 
+                        </div>
+                    </div>
+                   
+                </div>
+           </div>
+        </div>
+    </div> 
+</div> 
+<div id="modalPartner" class="modal fade modal-backdrop-transparent" role="dialog" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" title="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-12 col-sm-12 col-md-12">
+                    <h1 class="pt-2"><b>Pay Partner API</b><br></h1><span>Add new API by filling the form bellow. Required(<span class="text-danger">*</span>).</span>
+                    <div class="border-top mt-3"></div> 
+                    <div id="clientInformationDiv" class="mb-2"> 
+                        <form id="apiForm" class="row">
+            			    <input type="hidden" id="api_id" name="api_id">
+            			    <input type="hidden" id="pay_partner_id" name="pay_partner_id">
+                        	<div class="col-12 col-md-6">
+                    		    <label for="" class="col-form-label control-label"><b>API Name</b><span class="text-danger">*</span></label>
+                                <input type="text" class="form-control form-control-sm  pl-2" id="client_name" required  name="api_name" autocomplete="off"/> 
+                    		</div>
+                    		<div class="col-12 col-md-6">
+                    		    <label for="" class="col-form-label control-label"><b>API URL</b><span class="text-danger">*</span></label>
+                                <input type="text" class="form-control form-control-sm pl-2" id="client_name" required  name="api_url" autocomplete="off"/> 
+                    		</div>
+                    		 
+                        </form> 
+                    </div>
+                    
+                    	
+                	<div class="border-top my-3"></div>
+                	<div class=" row"> 
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">   
+                            <button id="btnSubmitAPI" type="button" class="btn btn-primary btn-sm hvr-sweep-to-left" title="Save">
+                                <i class="far fa-save"></i> Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div> 
+    </div> 
+</div> 
+
+
+
+
+
+
+
+
+
+

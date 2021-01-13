@@ -1,0 +1,78 @@
+<style>
+    .errorPanel{
+        position:absolute;
+        z-index:1000;
+        top : 175px;
+        right:50px;
+        min-height: 50px;
+        width:800px;
+        background:white;
+        display:none;
+        padding: 10px;
+        border-radius: 10px;
+        border: 1pt solid #000;
+        
+    }
+    .errorFooter{
+        margin-top:10px;
+    }
+    
+    .errorBody { 
+        overflow-x: auto;
+    }      
+    #btnGo{
+            width: 12%;
+            margin-top:-32px;
+            float : right; 
+            margin-right: -48px !important;
+        }
+</style>
+<div class="panel">
+    <div class="panel-container">
+        <div class="panel-content">     
+            <div class="zContainer">
+                <div class="errorPanel">
+                    <div class="errorBody"></div>
+                    <div class="errorFooter">
+                        <button type="button"  class="btn-sm btn btn-primary btn-sm" id="btnClose"><span class="glyphicon glyphicon-eye-close"></span> Close</button>
+                    </div>
+                </div>
+                 <div class="row mb-2">
+                     <div class="col-12 col-sm-8 col-md-6 col-lg-4 col-xl-3">
+                        <label for="user_id" class="col-1 col-form-label"> User</label>
+                        <select name="user_id" id="user_id" class="form-control form-control-sm"> </select>
+                        <button type="button"  class="btn-sm btn btn-primary" id="btnGo"><i class="fas fa-filter"></i></button>
+                    </div>
+                </div>
+                <div class="row mb-1">
+                      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <button type="button" class="btn-sm btn btn-primary btn-sm" id="btnDelete">
+                        	<span class="fas fa-trash"></span> Delete
+                        </button>    
+                    
+                        <button type="button" class="btn-sm btn btn-primary btn-sm" id="btnRefresh">
+                        	<span class="fas fa-refresh"></span> Load My Errors
+                        </button>     
+                    
+                        <button type="button" class="btn-sm btn btn-primary btn-sm" id="btnAllRefresh">
+                        	<span class="fas fa-refresh"></span> Load All Errors
+                        </button>  
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">   
+                        <div id="grid" class="zGrid" > </div>    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            

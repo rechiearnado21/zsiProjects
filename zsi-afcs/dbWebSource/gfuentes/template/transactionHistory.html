@@ -1,0 +1,129 @@
+<style>
+    #gridPassengerHistory #Transactions{
+        margin-left: 50% !important;
+    } 
+</style>  
+<div class="panel">
+    <div class="panel-container">
+        <div class="panel-content">
+            <div class="zContainer">  
+                <div class="m-1  mt-5" id="searchGroup">
+                    <div class="row"> 
+                            <div class="mt-3">
+                                <label for="program_id" class="col-form-label control-label"><b>Search:</b></label>
+                                <div class="input-group"> </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-sm-6 col-md-3 col-xs-12 mb-1">
+                                <label for="program_id" class="col-form-label control-label">Last Name</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control form-control-sm  border-left-0 bg-transparent pl-1" id="P_last_name" name="P_last_name"  autoComplete="off" >  
+                                </div>
+                            </div>
+                             <div class="col-sm-6 col-md-3 col-xs-12 mb-1">
+                                <label for="program_id" class="col-form-label control-label">First Name</label>
+                                <div class="input-group">
+                                   <input type="text" class="form-control form-control-sm  border-left-0 bg-transparent pl-1" id="P_first_name" name="P_first_name" autoComplete="off" >  
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-3 col-xs-12 mb-2">
+                                <label for="program_id" class="col-form-label control-label">Travel Date </label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control form-control-sm pl-1" id="travel_date" name="travel_date"  > 
+                                    <div class="input-group-append">
+                                        <button id="btnPassenger" class="btn-sm btn btn-primary btn-outline-default text-white hvr-sweep-to-left" type="button" title="Search"><i class="fas fa-search"></i></button>
+                                    </div>
+                                    <div class="input-group-append ml-1">
+                                        <button id="btnClearPassenger" class="btn-sm btn btn-primary btn-outline-default text-white hvr-sweep-to-left" type="button" title="Clear">
+                                            <i class="fas fa-eraser"></i> Clear
+                                        </button>
+                                    </div> 
+                                </div>
+                            </div>
+                            <div class="row mt-3 col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 hide" id="PassengerRow">
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                     <div id="gridPassengerHistory" class="zGrid"></div>
+                                </div> 
+                            </div>
+                        </div> 
+                        
+                        
+                      
+<!--                                                       VEHICLE GROUP                                                                 -->
+                        <div class="input-group input-group-sm bg-white shadow-inset-2 hide" id="vehicleForm">
+                            <div class="mt-3">
+                                <label for="" class="col-form-label control-label"><b>Search:</b></label>
+                                <div class="input-group"> </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-sm-6 col-md-3 col-xs-12 mb-1">
+                                <label for="" class="col-form-label control-label">Last Name</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control form-control-sm  border-left-0 bg-transparent pl-1" id="V_last_name" name="V_last_name"  autoComplete="off" >  
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-3 col-xs-12 mb-1">
+                                <label for="" class="col-form-label control-label">First Name</label>
+                                <div class="input-group">
+                                   <input type="text" class="form-control form-control-sm  border-left-0 bg-transparent pl-1" id="V_first_name" name="V_first_name" autoComplete="off" >  
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-2 col-xs-12 mb-1">
+                                <label for="" class="col-form-label control-label">From</label>
+                                <div class="input-group">
+                                   <input type="text" class="form-control form-control-sm  border-left-0 bg-transparent pl-1" id="V_fromDate" name="V_fromDate" autoComplete="off" >  
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-3 col-xs-12 mb-2">
+                                <label for="program_id" class="col-form-label control-label">To</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control form-control-sm pl-1" id="V_toDate" name="V_toDate"  > 
+                                    <div class="input-group-append">
+                                        <button id="btnSearchVehicle" class="btn-sm btn btn-primary btn-outline-default text-white hvr-sweep-to-left" type="button" title="Search"><i class="fas fa-search"></i></button>
+                                    </div>
+                                    <div class="input-group-append ml-1">
+                                        <button id="btnClearVehicle" class="btn-sm btn btn-primary btn-outline-default text-white hvr-sweep-to-left" type="button" title="Clear">
+                                            <i class="fas fa-eraser"></i> Clear
+                                        </button>
+                                    </div> 
+                                </div>
+                            </div>  
+                            <div class="row mt-3 col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 hide" id="VehicleRow">
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                     <div id="gridVehicleHistory" class="zGrid"></div>
+                                </div> 
+                            </div>
+                        </div>  
+                </div>  
+            </div>
+        </div>
+    </div>  
+</div>  
+
+<div class="modal" id="modalTransactionHistory" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="vertical-alignment-helper modal-dialog modal-md" role="document">
+        <div class="modal-content vertical-align-center">
+            <form id="frm_modalTransactionHistory">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card">
+                         <div class="card-body text-center">
+                            <img src="../img/avatar-m.png" id="imgFilename" height="150" width="150">
+                        </div>
+                        <div class="card-body text-center">
+                            <p class="card-text" style="font-size:15px;"><b>Passenger</b>:&nbsp; <span id="passenger_id"></span></p>
+                            <p class="card-text"><b>Date :</b>&nbsp; <span id="payment_date"></span></p>   
+                            <b id="plateNoId" class="card-title" style="font-size:25px;"></b> 
+                            <p class="card-text" style="font-size:20px;"><b>Vehicle Type:</b>&nbsp; <span id="vehicleTypeId"></span></p> 
+                        </div>  
+                        
+                    </div> 
+                </div>
+            </form>
+        </div>
+    </div>
+</div> 

@@ -1,0 +1,218 @@
+<!--<link rel="stylesheet" href="/Scripts/jQuery-TE/jquery-te-1.4.0.css"/>-->
+<script src='/javascript/name/zsiSearch'></script>
+<!--<script src="/TableHeadFixer/tableHeadFixer.js"></script>-->
+<!--<script src="/Scripts/jQuery-TE/jquery-te-1.4.0.min.js"></script>-->
+<style>
+    #grid thead tr, #grid thead th{
+    	-ms-transition: 0.1s;
+    	background-clip: padding-box;
+    	z-index: 50;
+    }
+    
+    #user-box{
+        top:200px;
+        background-color: #fff;
+        height: 250px;
+        width: 250px;
+        left: 360px;
+        position: absolute;
+        display:none;
+        webkit-box-shadow: 30px 30px 7px -1px rgba(0,0,0,0.58);
+        -moz-box-shadow: 30px 30px 7px -1px rgba(0,0,0,0.58);
+        box-shadow: 30px 30px 7px -1px rgba(0,0,0,0.58);
+        border: 2px solid #fff;
+        border-radius: 10px;
+        overflow:hidden;
+    }
+      #user-box img{ 
+      height: 100%;
+      width: 100%; 
+      
+  }
+     .zGrid .item .title {
+        height: 22px; 
+        line-height: 19px;
+    }
+    .zGrid .zHeaders .zSort {
+        
+    }
+    .zDDList{
+        z-index: 1100;
+    }
+    .textarea-box{
+        background-color: #fff;
+        border: 1pt solid #D4D5D6;
+        border-radius: 10px;
+        box-shadow: 30px 30px 10px -8px rgba(0, 0, 0, 0.58);
+        webkit-box-shadow: 30px 30px 10px -8px rgba(0,0,0,0.58);
+        -moz-box-shadow: 30px 30px 10px -8px rgba(0,0,0,0.58);
+        float: right;
+        overflow: hidden;
+        width: 450px;
+        margin-right: 85px;
+        margin-top: 30px;
+        padding: 1rem;
+    }
+    
+    .textarea-box ul{
+        list-style: disc;
+    }
+    
+    .jqte_tool_19{
+        display:none;
+    }
+</style>
+
+<div class="panel">
+    <div class="panel-container">
+        <div class="panel-content">  
+            <div class="m-1">
+                <div class="row">
+                    <label class=" col-1 control-label"><b>Search:</b></label>
+                    <div class="col-xl-2 col-md-3 col-sm-5 col-12 mb-1"> 
+                        <select class="form-control form-control-sm input-sm search-filter" name="search_option" id="search_option">
+                            <option value="logon">Logon Name</option>
+                            <option value="first_name">First Name</option>
+                            <option value="last_name">Last Name</option>
+                        </select>
+                    </div>
+                    <div class="col-xl-2 col-md-3 col-sm-5 col-12"> 
+                        <input name="search_value" id="search_value" class="form-control form-control-sm input-sm search-filter pl-2">
+                    </div>
+                    <label class="col-xl-1 col-sm-1 col-12 control-label"><b>Filter:</b></label>
+                    <div class="col-xl-1 col-md-2 col-sm-3 col-6"> 
+                        <select class="form-control form-control-sm input-sm" name="filter_option" id="filter_option">
+                            <option value="region_id">Region</option>
+                            <option value="lead_unit_id">Lead Unit</option>
+                        </select>
+                    </div>
+                    <div class="col-xl-1 col-md-2 col-sm-3 col-6"> 
+                        <select class="form-control form-control-sm input-sm" name="filter_value" id="filter_value">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <label class="col-xl-1 col-sm-1 col-12 control-label"><b>Role:</b></label>
+                    <!--<div class=" col-1"> 
+                        <select class="form-control form-control-sm input-sm search-filter" name="roles_filter" id="roles_filter">
+                            <option value=""></option>
+                        </select>
+                    </div>-->
+                    <div class="input-group col-md-5 col-xl-3 col-sm-6 col-12 mb-1" id="searchHarness"> 
+                        <select class="form-control form-control-sm input-sm search-filter" name="roles_filter" id="roles_filter">
+                            <option value=""></option>
+                        </select>
+                        <div class="input-group-append">
+                            <button type="button"  class="btn-sm btn btn-primary btn-outline-default text-white" id="btnGo">
+                                <span class="fas fa-search"></span>
+                            </button>
+                        </div>
+                        <div class="input-group-append ml-1">
+                              <button type="button"  class="btn-sm btn btn-primary btn-outline-default text-white" id="btnClear">
+                                <span class="fas fa-eraser"></span> Clear
+                            </button>
+                        </div>
+                     </div>
+                    <!--<div class="row">
+                        <div class="button-group" style="margin-left: 10px;">
+                            <button type="button"  class="btn btn-primary btn-xs " id="btnClear">
+                                <span class="fas fa-eraser"></span> Clear
+                            </button>
+                            <button type="button"  class="btn btn-primary btn-xs btn" id="btnGo">
+                                <span class="fas fa-search"></span> Go
+                            </button>
+                        </div>    
+                    </div>-->
+                </div>
+            </div>
+            <form method="post" id="frm">
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <div id="grid" class="zGrid mb-1"> </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" id="btnDiv">
+                        <button type="button" class="btn btn-primary btn-sm" id="btnSave">
+                        	<span class="far fa-save"></span> Save
+                        </button>
+                        <button type="button" class="btn btn-primary btn-sm" id="btnNactive">
+                        	<span class="fas fa-users"></span> Inactive
+                        </button> 
+                        <button type="button" class="btn btn-primary btn-sm" id="btnAdd">
+                        	<span class="fas fa-user-plus"></span> Add
+                        </button>   
+                      
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<ul name="localTemplates">
+    <li name="modalBodyInactive">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-1">
+                <div id="{{grid}}" class="zGrid"> </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <button type="button" onclick="{{onClickSaveInactive}}" class="btn btn-primary btn-sm"><i class="far fa-save"></i> Save</button>
+                <button id="btnDeleteUser" type="button" class="btn btn-primary btn-sm"  title="Delete">
+                	<i class="fas fa-trash-alt"></i> Delete
+                </button>
+            </div>
+        </div>
+    </li>
+    <li name="modalBodyAddUsers">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-1">
+                <div id="{{grid}}" class="zGrid"> </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <button type="button" onclick="{{onClickSaveNewUsers}}" class="btn btn-primary btn-sm"><i class="far fa-save"></i> Save</button>
+            </div>
+        </div>
+    </li>
+    <li name="modalBodyOEM">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="input-group mb-3">
+                    <select class="form-control form-control-sm input-sm search-filter" name="oem_filter_id"></select>
+                    <div class="input-group-prepend">
+                        <button type="button" class="btn btn-primary btn-sm" onclick="users.addList(this)"><i class="fa fa-plus" aria-hidden="true" ></i> Add</button>
+                    </div>
+                </div>
+                <div>
+                    <div id="oemListGroup">
+                       <ul class="list-group" id="listItemGroup"></ul>
+                    </div>    
+                    <button type="button" id="btnSaveUsersOEM" onclick="users.saveUsersOEM(this)" class="btn-sm btn btn-primary m-1 d-none" style="float: right;" ><i class="far fa-save"></i> Save</button>
+                </div>
+            </div>
+        </div>
+    </li>
+    <li name="modalBodyAddNewOEM">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="input-group mb-3">
+                    <select class="form-control form-control-sm input-sm search-filter" name="oem_filter_id"></select>
+                    <div class="input-group-prepend">
+                        <button type="button" class="btn btn-primary btn-sm" onclick="users.addNewList(this)"><i class="fa fa-plus" aria-hidden="true" ></i> Add</button>
+                    </div>
+                </div>
+                <div>
+                    <div id="oemListGroup">
+                       <ul class="list-group" id="listItemGroup"></ul>
+                    </div>    
+                </div>
+            </div>
+        </div>
+    </li>
+    
+    <li name="modalBodyImageUser">
+      <div class="pull-left"><button type="button" onclick="{{onClickUploadImageUser}}" class="btn btn-sm btn-primary"><span class="fas fa-upload"></span> Upload</button></div>
+   </li>
+  
+</ul> 
+    
+
+<div id="user-box">
+    <img src="/file/viewImage?fileName=no-image.jpg&amp;isThumbNail=y" id="userImage" >
+</div>

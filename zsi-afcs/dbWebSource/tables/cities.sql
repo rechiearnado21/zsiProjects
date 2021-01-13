@@ -1,0 +1,6 @@
+CREATE TABLE cities(
+city_id	INT IDENTITY(1,1)	NOT NULL
+,city_code	NCHAR(20)	NOT NULL
+,city_name	NVARCHAR(200)	NOT NULL
+,state_id	INT	NOT NULL
+,sate_name	NVARCHAR(100)	NULL)

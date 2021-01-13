@@ -1,0 +1,169 @@
+<script type="text/javascript" src="/scripts/qrcode.min.js"></script>
+<style>
+#employee{
+    margin-bottom:10px;
+}
+#employee .zGridPanel .zHeaders .item .title .text{
+    width:100%;
+}
+#user-box{
+    top:100px;
+    background-color: #fff;
+    height: 250px;
+    width: 250px;
+    left: 360px;
+    position: absolute;
+    display:none;
+    webkit-box-shadow: 30px 30px 7px -1px rgba(0,0,0,0.58);
+    -moz-box-shadow: 30px 30px 7px -1px rgba(0,0,0,0.58);
+    box-shadow: 30px 30px 7px -1px rgba(0,0,0,0.58);
+    border: 2px solid #fff;
+    border-radius: 10px;
+    overflow:hidden;
+}
+  #user-box img{ 
+  height: 100%;
+  width: 100%; 
+  
+}
+</style>
+<div class="panel">
+    <div class="panel-container">
+        <div class="panel-content">
+            <div class="zContainer">
+                <div class="row">
+                    <div class="col-12 col-sm-8 col-md-8 col-xs-8"></div>
+                    <div class="col-md-4 col-xl-4 col-sm-4 col-12"> 
+                        <div class="input-group bg-white shadow-inset-2">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-transparent border-right-0 py-1 px-3 text-success">
+                                    <i class="fal fa-search"></i>
+                                </span>
+                            </div>
+                            <input id="searchVal" type="text" class="form-control form-control-sm desc-prop-group border-left-0 bg-transparent pl-2" placeholder="Type here..." autocomplete="off">
+                            <div class="input-group-append">
+                                <button id="btnSearchVal" class="btn btn-primary waves-effect waves-themed btn-outline-default text-white" type="button" title="Search">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-1">
+                         <div id="gridVehicles" class="zGrid"></div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">    
+                        <div class="button-group">     
+                            <button type="button" class="btn btn-primary btn-sm" id="btnSaveVehicles">
+                                <i class="far fa-save"></i> Save
+                            </button>
+                             <button type="button" class="btn btn-primary btn-sm" id="btnInactive" data-toggle="tooltip" title="Delete">
+                        	  <i class="fas fa-ban"></i> Inactive
+                            </button> 
+                            <button type="button" onclick="vehicles.showModalUpload(this,'Vehicles');" class="btn btn-sm  btn-primary"><i class="fa fa-upload"></i> Upload</button>
+                            <button type="button" class="btn btn-primary btn-sm" id="btnAdd">
+                            	<span class="fas fa-user-plus"></span> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
+<div class="modal" id="modalVehicleId" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="vertical-alignment-helper modal-dialog modal-sm" role="document">
+        <div class="modal-content vertical-align-center">
+            <form id="frm_modalVehicleId">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                  <div class="card col-12">
+                      <div class="card-body text-center">
+                        <img src="../img/avatar-m.png" id="imgFilename" height="150" width="150">
+                      </div>
+                      <div class="card-body text-center">
+                        <b id="plateNoId" class="card-title" style="font-size:25px;"></b>
+                        <!--<p id="positionId" class="card-text" style="font-size:10px;"></p>-->
+                        <p class="card-text" style="font-size:20px;"><b>Vehicle Type:</b>&nbsp; <span id="vehicleTypeId"></span></p> 
+                      </div>
+                      <div class="justify-content-center d-flex mb-1" >
+                        <div id="qrcode" style="width:100px; height:100px;"></div>
+                      </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal" id="modalInactiveVehicles" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <form id="frm_modalInactive">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalInactive"> Title </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-1">
+                            <div id="gridInactiveVehicles" class="zGrid"> </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                            <button type="button" id="btnSaveInactiveVehicles" class="btn btn-primary btn-sm"><i class="far fa-save"></i> Save</button>
+                            <button type="button" class="btn btn-primary btn-sm" id="btnDeleteVehicles" data-toggle="tooltip" title="Delete">
+                            	<i class="fas fa-trash-alt"></i> Delete
+                            </button>   
+                        </div>
+                   </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<ul name="localTemplates">
+    <li name="modalBodyAddUsers">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-1">
+                <div id="{{grid}}" class="zGrid"> </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <button type="button" id="btnSave2" onclick="{{onClickSaveNewUsers}}" class="btn btn-primary btn-sm"><i class="far fa-save"></i> Save</button>
+            </div>
+        </div>
+    </li> 
+    <li name="modalBodyUploadExcel">
+        <div class="row">  
+            <input id="tmpData" name="tmpData" type="hidden" class="form-control input-sm" > 
+        </div>
+        <div class="row mb-2">  
+            <label class="col-2  control-label">Select File:</label>
+            <div class=" col-3">
+                <input type="file" class="browse btn btn-primary" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" name="file">
+            </div>
+        </div>
+        <div class="row">  
+            <div class="col-3">
+                <button type="button" onclick="vehicles.{{onClickUploadExcel}}" class="btn btn-primary" id="btnUploadFile" style="margin-left: 5px">
+                    <i class="fas fa-upload"></i> Upload
+                </button>
+            </div>
+        </div>
+    </li>
+    <li name="modalBodyImageUser">
+      <div class="pull-left"><button type="button" onclick="{{onClickUploadImageUser}}" class="btn btn-sm btn-primary"><span class="fas fa-upload"></span> Upload</button></div>
+   </li>
+</ul>
+<div id="user-box">
+    <img src="/file/viewImage?fileName=no-image.jpg&amp;isThumbNail=y" id="userImage" >
+</div>
+
+
+
+
+

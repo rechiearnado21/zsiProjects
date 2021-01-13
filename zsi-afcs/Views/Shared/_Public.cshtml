@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=8, IE=9, IE=edge" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="Developed By" content="zetta-solutions.net">
+    <link rel="shortcut icon" href='@Url.Content("~/")favicon.png' type="image/x-icon">
+    <title>@ViewBag.pageTitle </title>
+   <!-- Call App Mode on ios devices -->
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<!-- Remove Tap Highlight on Windows Phone IE -->
+	<meta name="msapplication-tap-highlight" content="no">
+	<!-- base css -->
+	<link rel="stylesheet" media="screen, print" href='@Url.Content("~/")css/vendors.bundle.css'>
+	<link rel="stylesheet" media="screen, print" href='@Url.Content("~/")css/app.bundle.css'>
+	<link rel="mask-icon" href='@Url.Content("~/")img/favicon/safari-pinned-tab.svg' color="#5bbad5">
+	<link rel="stylesheet" media="screen, print" href='@Url.Content("~/")css/miscellaneous/reactions/reactions.css'>
+	<link rel="stylesheet" media="screen, print" href='@Url.Content("~/")css/miscellaneous/fullcalendar/fullcalendar.bundle.css'>
+    <link rel="stylesheet" media="screen, print" href='@Url.Content("~/")css/miscellaneous/jqvmap/jqvmap.bundle.css'>
+    <link rel="stylesheet" media="screen, print" href='@Url.Content("~/")css/formplugins/select2/select2.bundle.css'>
+    <link rel="stylesheet" media="screen, print" href='@Url.Content("~/")css/formplugins/bootstrap-datepicker/bootstrap-datepicker.css'>
+	<link id="myskins" rel="stylesheet" media="screen, print" href='@Url.Content("~/")css/skins/skin-master.css'>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" media="all">
+	<style type="text/css">
+		body{
+			padding: 0;
+			margin: 0;
+		}
+		.page-content-wrapper{
+		background: linear-gradient(to right, #08005f 40%, #07004e); 
+		}
+		.p-color-white{
+			color: white;
+		}
+		.hide{
+			display: none;
+		}
+		.bg-brand-dark{
+			background-color: #f1efef;
+			color: #160202;
+		}
+		.btn-payroll {
+			background-image: linear-gradient(to bottom, #1a0dab 0px, #10058b 100%);
+			color: #fff; 
+		}
+		.btn-payroll:hover {
+			background-image: linear-gradient(to bottom, #10058b 0px, #0d0379 100%);
+			color: #fff; 
+		}
+		.btn-signup {
+			background-image: linear-gradient(to bottom, #fff 0px, #fff 100%);
+			color: #000; 
+		}
+		.btn-signup:hover {
+			background-image: linear-gradient(to bottom, #10058b 0px, #0d0379 100%);
+			color: #fff; 
+		}
+		.color-red{
+			color: #126eb8b5;
+		}
+		.color-red:hover{
+			color: white;
+		}
+		.help-block{
+			color: #4c4c4c !important;
+		}
+		.zsi-home-color{color:#ffffff;}
+		.flex-row a i {
+			color: #cfcfff;
+		}
+		.flex-row a i:hover {
+			color: #ffffff;
+		}
+		.zsi-home-color a {
+			color: #ffffff;
+		}
+		.select2-container--default .select2-selection--single .select2-selection__rendered {
+			line-height: calc(0.9em + 1rem + 2px);
+		}
+		.select2-container .select2-selection--single {
+			height: calc(1.5em + .2rem + 5px);
+			padding-bottom: 1.1rem;
+		}
+		label {
+			margin-bottom: -1.7rem;
+		}
+	</style>
+</head>
+<body>
+	<script src='@Url.Content("~/")Scripts/jquery.min.js'></script>
+	<script src='@Url.Content("~/")Scripts/handlebars.min.js'></script>
+    @Html.Raw(ViewBag.GetScriptLinkCurrentVersion("zsipublib"))   	
+    <script>
+        var base_url = '@Url.Content("~/")';
+        var controller_url = '@this.Context.Request.RequestContext.RouteData.Values["controller"].ToString()';
+    </script>
+    <div class="progressWindow zPopup-system">
+        <div class="loadingImg"></div>
+        <div class="loadingText">Loading...Please wait</div>
+    </div>
+    <div class="errorWindow zPopup-system">
+        Some processe(s) encountered a problem.
+        <br> Please Contact System Administrator.
+    </div>
+	
+	<div class="page-wrapper">
+		<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+		<div class="page-inner">
+			<div class="page-content-wrapper">
+				<div class="height-10 w-100 shadow-lg px-4 bg-brand-red">
+					<div class="d-flex align-items-center container p-0">
+						<div class="page-logo width-mobile-auto m-0 align-items-center justify-content-center p-0 bg-transparent bg-img-none shadow-0 height-9">
+							<a href="/" class="page-logo-link press-scale-down d-flex align-items-center navbar-brand text-white">
+								<img src='@Url.Content("~/")images/logo.png' alt="Lear Logo" aria-roledescription="logo" class="mr-2">
+								 ZSI AFCS
+							</a>
+						</div>
+						<a href="#" class="btn-link text-white ml-auto">
+							
+						</a>
+					</div>
+				</div>
+				<div class="flex-1" style="background: url(@Url.Content("~/")img/svg/pattern-1.svg) no-repeat center bottom fixed; background-size: cover;">
+					<div class="container  px-sm-0">
+						<div class="row">
+							@Html.Raw(ViewBag.GetScriptLinkCurrentVersion("appPubStart"))
+							<main id="js-page-content" role="main" class="page-content" style="background: url(@Url.Content("~/")img/svg/pattern-1.svg) no-repeat center bottom fixed; background-size: cover;">							
+								@RenderBody()
+							</main>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    
+
+
+    @Html.Raw(ViewBag.GetScriptLinkCurrentVersion("easyJsTemplateWriter"))		
+	<script src='@Url.Content("~/")js/vendors.bundle.js'></script>
+	<script src='@Url.Content("~/")js/app.bundle.js'></script>
+	<script src='@Url.Content("~/")js/formplugins/bootstrap-datepicker/bootstrap-datepicker.js'></script>
+	<script src='@Url.Content("~/")js/formplugins/inputmask/inputmask.bundle.js'></script>
+	<script src='@Url.Content("~/")js/formplugins/select2/select2.bundle.js'></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#defaultIndeterminate').prop('indeterminate', true)
+
+            var toggleCheckbox = function()
+            {
+                $('#js-checkbox-toggle').toggleText('Change to CIRCLE', 'Change back to default');
+                $('.frame-wrap .custom-checkbox').toggleClass('custom-checkbox-circle');
+            }
+
+            var toggleRadio = function()
+            {
+                $('#js-radio-toggle').toggleText('Change to ROUNDED', 'Change back to default');
+                $('.frame-wrap .custom-radio').toggleClass('custom-radio-rounded');
+            }
+		
+		});
+    </script>
+</body>
+</html>
+
+
+

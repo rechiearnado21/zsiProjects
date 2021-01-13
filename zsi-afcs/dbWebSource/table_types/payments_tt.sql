@@ -1,0 +1,21 @@
+CREATE TYPE payments_tt AS TABLE(
+payment_reference	NVARCHAR(100)	NULL
+,payment_date	DATETIME	NULL
+,device_hash_key	NVARCHAR(0)	NULL
+,base_fare	DECIMAL(14)	NULL
+,regular_count	INT	NULL
+,student_count	INT	NULL
+,senior_count	INT	NULL
+,pwd_count	INT	NULL
+,regular_amount	DECIMAL(14)	NULL
+,student_amount	DECIMAL(14)	NULL
+,senior_amount	DECIMAL(14)	NULL
+,pwd_amount	DECIMAL(14)	NULL
+,vehicle_hash_key	NVARCHAR(0)	NULL
+,driver_id	INT	NULL
+,trip_hash_key	NVARCHAR(0)	NULL
+,pao_id	INT	NULL
+,route_hash_key	NVARCHAR(0)	NULL
+,from_location	NVARCHAR(200)	NULL
+,to_location	NVARCHAR(200)	NULL
+,travel_distance	DECIMAL(14)	NULL)

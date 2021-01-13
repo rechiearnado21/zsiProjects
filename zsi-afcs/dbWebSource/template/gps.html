@@ -1,0 +1,462 @@
+<script type="text/javascript" src="/scripts/print.min.js"></script>
+<style>
+    .zGrid .zHeaders > .item .title {
+        height: 20px;
+        align-items: center;
+        display: inherit;
+    } 
+    @media print {
+         .zRow.zTotal{
+             position:unset;
+         }
+    }
+    .zRow.zTotal, .zRow.zTotal:hover{
+        color: #fff;
+        font-weight: bold;
+    }
+  
+    .after_modal_appended{  
+        position:relative;
+    }
+    .modal{
+        position: absolute !important;
+    }
+    .modal-backdrop{
+        opacity: 0 !important;
+    }
+    
+    #gridForPostingSummary .zHeaders {
+        width: 1750px;
+    }
+    div.ex1 { 
+      width: 100% !important;
+      height: 200px !important;
+      overflow: scroll;
+    }
+    .zHeaders .item .title .text {
+        text-transform: capitalize;
+    }
+</style>
+<div class="panel">
+    <div class="panel-container">
+        <div class="panel-content">
+                
+            <ul class="nav nav-tabs main-nav-tabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#nav-login" role="tab" aria-controls="nav-login"><i class="far fa-clock"></i> Realtime</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#nav-report" role="tab" aria-controls="nav-report"><i class="far fa-file-alt"></i> Report</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#nav-command" role="tab" aria-controls="nav-command"><i class="far fa-code"></i> Command</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#nav-basicInfo" role="tab" aria-controls="nav-basicInfo"><i class="far fa-info-circle"></i> Basic Info </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#nav-camera" role="tab" aria-controls="nav-camera"><i class="far fa-camera-alt"></i> Camera </a>
+                </li>
+            </ul> 
+            <div class="tab-content border border-top-0 p-3">
+                <div role="tabpanel" class="tab-pane fade show active" id="nav-login">  
+                    <div class="tab-content border-top-0"> 
+                        <div class="row">  
+                        	<div class="col-sm-6 col-md-3 col-xs-12 mt-2">  
+                                <input type="text" class="form-control form-control-sm pl-2" id="user_name"  /> 
+                    		</div>                        
+                    		<div class="col-sm-6 col-md-3 col-xs-12 mt-2"> 
+                    			<input type="text" class="form-control form-control-sm pl-2" id="device_token"  placeholder="Device Token"/> 
+                    		</div>     
+                    	</div>
+                        <div class="row ">  
+                        	<div class="col-sm-6 col-md-3 col-xs-12 mt-2">  
+                                <input type="text" class="form-control form-control-sm pl-2" id="user_id"  placeholder="User ID"/> 
+                    		</div>
+                    		<div class="col-sm-6 col-md-3 col-xs-12 mt-2"> 
+                                <input type="text" class="form-control form-control-sm pl-2" id="max_alarm_index"  placeholder="Max Alarm Index"/> 
+                    		</div>   
+                    	</div>  
+                    	<div class="row ">  
+                        	<div class="col-sm-6 col-md-3 col-xs-12 mt-2">  
+                                <input type="text" class="form-control form-control-sm pl-2" id="track_id"  placeholder="Track ID..."/> 
+                    		</div>   
+                    	</div> 
+                    	<div class="col-12 col-sm-12 col-md-12 col-xl-12 row mt-2">
+                            <div class="button-group"> 
+                                <button class="btn-sm btn btn-primary hvr-sweep-to-left btnPrint mt-2" type="button" data-toggle="tooltip" data-placement="bottom" data-original-title="get vehicle info by user ID" onclick="gps.getVehicleInfoByUserID();"> 
+                                   <i class="far fa-bus"></i> Vehicle
+                                </button> 
+                                <button class="btn-sm btn btn-primary hvr-sweep-to-left btnPrint mt-2" type="button" data-toggle="tooltip" data-placement="bottom" data-original-title="get real time GPS info by user" onclick="gps.getRealTimeGPSInfoByUser()"> 
+                                    <i class="far fa-clock"></i> User's GPS
+                                </button> 
+                                <button class="btn-sm btn btn-primary hvr-sweep-to-left btnPrint mt-2" type="button" data-toggle="tooltip" data-placement="bottom" data-original-title="get real time alarm info by user" onclick="gps.getRealTimeAlarmInfoByUser()">
+                                   <i class="far fa-alarm-clock"></i>  Real Time Alarm
+                                </button>  
+                                <button class="btn-sm btn btn-primary hvr-sweep-to-left btnPrint mt-2" type="button" data-toggle="tooltip" data-placement="bottom" data-original-title="get real time GPS info by track ID" onclick="gps.getRealTimeGPSInfoByTrackID()">
+                                   <i class="far fa-clock"></i> Real Time GPS Track
+                                </button>  
+                                <button class="btn-sm btn btn-primary hvr-sweep-to-left btnPrint mt-2" type="button" data-toggle="tooltip" data-placement="bottom" data-original-title="get online status" onclick="gps.getOnlineStatus()">
+                                   <i class="far fa-eye"></i> Active
+                                </button> 
+                                <button class="btn-sm btn btn-primary hvr-sweep-to-left btnPrint mt-2" type="button" data-toggle="tooltip" data-placement="bottom" data-original-title="get last GPS info by track ID" onclick="gps.getLastGPSInfoByTrackID()">
+                                   <i class="far fa-map-marker"></i> Last GPS Track
+                                </button> 
+                                <button class="btn-sm btn btn-primary hvr-sweep-to-left btnPrint mt-2" type="button" data-toggle="tooltip" data-placement="bottom" data-original-title="get Ad" onclick="gps.getAD()">
+                                   <b style="border:1px solid;">Ad</b> get Ad
+                                </button> 
+                                <button class="btn-sm btn btn-primary hvr-sweep-to-left btnPrint mt-2" type="button" data-toggle="tooltip" data-placement="bottom" data-original-title="get basic info by user ID" onclick="gps.getBasicInfoByUserId()"> 
+                                   <i class="far fa-info-circle"></i> Users's Info 
+                                </button> 
+                            </div>
+                        </div>  
+                        <div class="row mt-3" id="loginDiv"> 
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div id="result1" class="zGrid"></div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>   
+                <div role="tabpanel" class="tab-pane fade" id="nav-report">
+                    <div class="zContainer">
+                        <div class="row"> 
+                            <div class="col-12 col-sm-12">
+                                <div class="row">  
+                                	<div class="col-sm-6 col-md-3 col-xs-12 mt-2">  
+                                        <input type="text" class="form-control form-control-sm pl-2" id="time_difference" name="time_difference"  placeholder="Begin Date"/> 
+                            		</div>
+                            		<div class="col-sm-6 col-md-3 col-xs-12 mt-2"> 
+                                        <input type="text" class="form-control form-control-sm pl-2" id="language" name="language"  placeholder="End Date"/> 
+                            		</div>
+                            		<div class="col-sm-6 col-md-3 col-xs-12 mt-2"> 
+                            			<input type="text" class="form-control form-control-sm pl-2" id="user_name" name="user_name"  placeholder="Track ID"/> 
+                            		</div>   
+                        		    <div class="col-sm-6 col-md-3 col-xs-12 mt-2">   
+                            			<select  class="form-control form-control-sm pl-2" id="report_type" name="report_type"></select> 
+                            		</div> 
+                            	</div> 
+                            	<div class="row">   
+                            		<div class="col-sm-6 col-md-3 col-xs-12 mt-2"> 
+                            			<input type="text" class="form-control form-control-sm pl-2" id="idling" name="idling"  placeholder="Idling"/> 
+                            		</div>
+                            		<div class="col-sm-6 col-md-3 col-xs-12 mt-2"> 
+                            			<input type="text" class="form-control form-control-sm pl-2" id="parking" name="parking"  placeholder="Parking"/> 
+                            		</div>
+                            		<div class="col-sm-6 col-md-3 col-xs-12 mt-2"> 
+                            			<input type="text" class="form-control form-control-sm pl-2" id="user_id" name="user_id"  placeholder="UserID"/> 
+                            		</div>
+                            		<div class="col-sm-6 col-md-3 col-xs-12 mt-2"> 
+                            			<input type="text" class="form-control form-control-sm pl-2" id="car_id" name="car_id"  placeholder="CarID"/> 
+                            		</div>
+                            	</div>
+                            	<div class="col-12 col-sm-12 col-md-12 col-xl-12 row mt-2">
+                            	    <div class="button-group">  
+                                        <button class="btn-sm btn btn-primary hvr-sweep-to-left btnPrint mt-2" type="button" data-toggle="tooltip" data-placement="bottom" data-original-title="get report GPS info by track ID" id="getReportGPSInfoByTrackID">
+                                           <i class="fas fa-file-pdf"></i> GPS Report
+                                        </button>
+                                        <button class="btn-sm btn btn-primary hvr-sweep-to-left btnPrintId mt-2" type="button" data-toggle="tooltip" data-placement="bottom" data-original-title="get report alarm info by track ID" id="getReportAlarmInfoByTrackID">
+                                            <i class="fas fa-file-pdf"></i> Track Alarm Report
+                                        </button>
+                                        <button class="btn-sm btn btn-primary hvr-sweep-to-left btnPrint mt-2" type="button" data-toggle="tooltip" data-placement="bottom" data-original-title="get report driving info by track ID" id="getReportDrivingInfoByTrackID">
+                                            <i class="fas fa-file-pdf"></i> Track Driving Report
+                                        </button>
+                                        <button class="btn-sm btn btn-primary hvr-sweep-to-left btnPrintId mt-2" type="button" data-toggle="tooltip" data-placement="bottom" data-original-title="get report alarm info by user ID" id="getReportAlarmInfoByUserID">
+                                            <i class="fas fa-file-pdf"></i> User's Alarm Report
+                                        </button>
+                                        <button class="btn-sm btn btn-primary hvr-sweep-to-left btnPrint mt-2" type="button" data-toggle="tooltip" data-placement="bottom" data-original-title="get report driving info by user ID" id="getReportDrivingInfoByUserID">
+                                            <i class="fas fa-file-pdf"></i> User's Driving Report
+                                        </button>
+                                        <button class="btn-sm btn btn-primary hvr-sweep-to-left btnPrintId mt-2" type="button" data-toggle="tooltip" data-placement="bottom" data-original-title="get history tracks" id="getHistoryTracks">
+                                            <i class="fas fa-history"></i> History Tracks
+                                        </button> 
+                                    </div>
+                                </div>
+                                <div class="row mt-3"> 
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <div id="gridReport" class="zGrid"></div> 
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                    </div> 
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="nav-command">
+                    <div class="zContainer">
+                        <div class="row"> 
+                            <div class="col-12 col-sm-12">
+                                <div class="row">  
+                                	<div class="col-sm-6 col-md-3 col-xs-12 mt-2">  
+                                        <input type="text" class="form-control form-control-sm pl-2" id="track_id" name="track_id"  placeholder="TrackID"/> 
+                            		</div>
+                            		<div class="col-sm-6 col-md-3 col-xs-12 mt-2"> 
+                                        <input type="text" class="form-control form-control-sm pl-2" id="command" name="command"  placeholder="Command"/> 
+                            		</div>
+                            		<div class="col-sm-6 col-md-3 col-xs-12 mt-2"> 
+                            			<select type="text" class="form-control form-control-sm pl-2" id="command_list" name="command_list" ></select> 
+                            		</div>   
+                        		    <div class="col-sm-6 col-md-3 col-xs-12 mt-2">   
+                            			<input type="text" class="form-control form-control-sm pl-2" id="identity" name="identity"  placeholder="Identity"/>  
+                            		</div> 
+                            	</div> 
+                            	<div class="row">   
+                            		<div class="col-sm-6 col-md-3 col-xs-12 mt-2"> 
+                            			<input type="text" class="form-control form-control-sm pl-2" id="max_cmd_index" name="max_cmd_index"  placeholder="Max Cmd Index"/> 
+                            		</div>
+                            		<div class="col-sm-6 col-md-3 col-xs-12 mt-2"> 
+                            			<input type="number" class="form-control form-control-sm pl-2" id="over_speed" name="over_speed"  placeholder="Over Speed"/> 
+                            		</div>
+                            		<div class="col-sm-6 col-md-3 col-xs-12 mt-2"> 
+                            			<input type="number" class="form-control form-control-sm pl-2" id="trigger_time" name="trigger_time"  placeholder="Trigger Time"/> 
+                            		</div>
+                            		<div class="col-sm-6 col-md-3 col-xs-12 mt-2"> 
+                            			<input type="number" class="form-control form-control-sm pl-2" id="mileage" name="mileage"  placeholder="Mileage"/> 
+                            		</div>
+                            	</div>
+                            	<div class="row">   
+                            		<div class="col-sm-6 col-md-3 col-xs-12 mt-2"> 
+                            			<input type="number" class="form-control form-control-sm pl-2" id="ratio" name="ratio"  placeholder="Ratio"/> 
+                            		</div>
+                            		<div class="col-sm-6 col-md-3 col-xs-12 mt-2"> 
+                            			<input type="text" class="form-control form-control-sm pl-2" id="imei" name="imei"  placeholder="IMEI"/> 
+                            		</div>
+                            		<div class="col-sm-6 col-md-3 col-xs-12 mt-2"> 
+                            			<input type="text" class="form-control form-control-sm pl-2" id="cmd_str" name="cmd_str"  placeholder="CMDStr"/> 
+                            		</div> 
+                            		<div class="col-sm-6 col-md-3 col-xs-12 mt-2"> 
+                            			<input type="text" class="form-control form-control-sm pl-2" id="cmd_body" name="cmd_body"  placeholder="CMDBody"/> 
+                            		</div> 
+                            	</div>
+                            	<div class="col-12 col-sm-12 col-md-12 col-xl-12 row mt-2">
+                                    <div class="button-group">   
+                                        <button class="btn-sm btn btn-primary hvr-sweep-to-left btnPrint mt-2" type="button" data-toggle="tooltip" data-placement="bottom" data-original-title="set transparent CMD to vehicle" id="setTransparentCMDToVehicle">
+                                            <i class="fas fa-circle-notch"></i> Transparent CMD
+                                        </button>
+                                        <button class="btn-sm btn btn-primary hvr-sweep-to-left btnPrintId mt-2" type="button" data-toggle="tooltip" data-placement="bottom" data-original-title="set dispatch CMD to vehicle " id="setDispatchCMDToVehicle">
+                                            <i class="fas fa-box-check"></i> Dispatch CMD
+                                        </button>
+                                        <button class="btn-sm btn btn-primary hvr-sweep-to-left btnPrint mt-2" type="button" data-toggle="tooltip" data-placement="bottom" data-original-title="set ctrl CMD to nemesis car alarm" id="setCtrlCMDToNemesisCarAlarm">
+                                            <i class="fas fa-car"></i> Car Alarm
+                                        </button>
+                                        <button class="btn-sm btn btn-primary hvr-sweep-to-left btnPrintId mt-2" type="button" data-toggle="tooltip" data-placement="bottom" data-original-title="set default ctrl CMD to vehicle" id="setDefaultCtrlCMDToVehicle">
+                                            <i class="fas fa-bus"></i> Default CMD
+                                        </button>
+                                        <button class="btn-sm btn btn-primary hvr-sweep-to-left btnPrint mt-2" type="button"  data-toggle="tooltip" data-placement="bottom" data-original-title="query send command status" id="querySendCommandStatus">
+                                            <i class="far fa-file-check"></i> Send Status
+                                        </button>
+                                        <button class="btn-sm btn btn-primary hvr-sweep-to-left btnPrintId mt-2" type="button"  data-toggle="tooltip" data-placement="bottom" data-original-title="get real time command info by user" id="getRealTimeCommandInfoByUser">
+                                            <i class="far fa-file-check"></i> Send Status
+                                        </button>
+                                        <button class="btn-sm btn btn-primary hvr-sweep-to-left btnPrintId mt-2" type="button" data-toggle="tooltip" data-placement="bottom" data-original-title="set over speed CMD to vehicle" id="setOverSpeedCMDToVehicle">
+                                            <i class="far fa-shipping-fast"></i> Over Speed
+                                        </button>
+                                        <button class="btn-sm btn btn-primary hvr-sweep-to-left btnPrint mt-2" type="button" data-toggle="tooltip" data-placement="bottom" data-original-title="set mileage CMD to vehicle"  id="setMileageCMDToVehicle"> 
+                                            <i class="far fa-tachometer-alt"></i> Mileage
+                                        </button> 
+                                    </div>
+                                </div> 
+                                <div class="row mt-3"> 
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <div id="gridCommand" class="zGrid"></div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="nav-basicInfo">
+                    <div class="zContainer">
+                        <div class="row"> 
+                            <div class="col-12 col-sm-12">
+                                <div class="row">  
+                                	<div class="col-sm-6 col-md-3 col-xs-12 mt-2">  
+                                        <input type="text" class="form-control form-control-sm pl-2" id="user_id" name="user_id"  placeholder="UserID"/> 
+                            		</div>
+                            		<div class="col-sm-6 col-md-3 col-xs-12 mt-2"> 
+                                        <input type="text" class="form-control form-control-sm pl-2" id="old_pass" name="old_pass"  placeholder="Old Pass"/> 
+                            		</div>
+                            		<div class="col-sm-6 col-md-3 col-xs-12 mt-2"> 
+                            			<input type="text" class="form-control form-control-sm pl-2" id="new_pass" name="new_pass"  placeholder="New Pass"/> 
+                            		</div>   
+                        		    <div class="col-sm-6 col-md-3 col-xs-12 mt-2">   
+                            			<input type="text" class="form-control form-control-sm pl-2" id="track_id" name="track_id"  placeholder="TrackID"/>  
+                            		</div> 
+                            	</div> 
+                            	<div class="row">  
+                                	<div class="col-sm-6 col-md-3 col-xs-12 mt-2">  
+                                        <input type="text" class="form-control form-control-sm pl-2" id="vehicle_name" name="vehicle_name"  placeholder="Vehicle Name"/> 
+                            		</div> 
+                            		<div class="col-sm-6 col-md-3 col-xs-12 mt-2">  
+                                        <input type="text" class="form-control form-control-sm pl-2" id="alarm_send_email_address" name="alarm_send_email_address"  placeholder="Alarm Send Email Address"/> 
+                            		</div> 
+                            	</div>
+                            	<div class="row">
+                            	    <div class="ex1 col-sm-6 col-md-12 col-xs-12 mt-2">
+                            		    <form >
+                                            <input type="checkbox" id="" name="" value="">
+                                            <label for="vehicle1">1.Enter Geo-Fence</label><br>
+                                            <input type="checkbox" id="" name="" value="">
+                                            <label for="vehicle2">2.Leave Geo-fence</label><br>
+                                            <input type="checkbox" id="" name="" value="">
+                                            <label for="vehicle3">7.SOS</label><br>
+                                            <input type="checkbox" id="" name="" value="">
+                                            <label for="vehicle1">8.Using Backup Battery</label><br>
+                                            <input type="checkbox" id="" name="" value="">
+                                            <label for="vehicle2">89.ACC on Alarm</label><br>
+                                            <input type="checkbox" id="" name="" value="">
+                                            <label for="vehicle3">90.ACC off Alarm</label><br>
+                                            <input type="checkbox" id="" name="" value="">
+                                            <label for="vehicle3">91.Shock Alarm</label><br>
+                                            <input type="checkbox" id="" name="" value="">
+                                            <label for="vehicle3">92.Immobilize Alarm</label><br>
+                                            <input type="checkbox" id="" name="" value="">
+                                            <label for="vehicle3">93.Immobilize Recovery</label><br>
+                                            <input type="checkbox" id="" name="" value="">
+                                            <label for="vehicle3">94.OverSpeed Summary</label><br>
+                                            <input type="checkbox" id="" name="" value="">
+                                            <label for="vehicle3">95.OverSpeed Start</label>
+                                        </form>
+                            		</div>
+                            	</div>
+                            	<div class="col-12 col-sm-12 col-md-12 col-xl-12 row mt-2">
+                                    <div class="button-group">   
+                                        <button class="btn-sm btn btn-primary hvr-sweep-to-left btnPrint mt-2" type="button" data-toggle="tooltip" data-placement="bottom" data-original-title="set basic info user pass" id="setBasicInfoUserPass">
+                                            <i class="far fa-info-circle"></i> User Info Pass
+                                        </button>
+                                        <button class="btn-sm btn btn-primary hvr-sweep-to-left btnPrintId mt-2" type="button" data-toggle="tooltip" data-placement="bottom" data-original-title="get basic info by track ID" id="getBasicInfoByTrackID">
+                                            <i class="far fa-info-circle"></i> Track User Info
+                                        </button>
+                                        <button class="btn-sm btn btn-primary hvr-sweep-to-left btnPrint mt-2" type="button" data-toggle="tooltip" data-placement="bottom" data-original-title="set basic info vehicle name"  id="setBasicInfoVehicleName">
+                                            <i class="far fa-info-circle"></i> Vehicle Info
+                                        </button>
+                                        <button class="btn-sm btn btn-primary hvr-sweep-to-left btnPrintId mt-2" type="button" data-toggle="tooltip" data-placement="bottom" data-original-title="set basic info alarm email"  id="setBasicInfoAlarmEmail">
+                                            <i class="far fa-info-circle"></i> Alarm Email
+                                        </button>
+                                        <button class="btn-sm btn btn-primary hvr-sweep-to-left btnPrint mt-2" type="button" data-toggle="tooltip" data-placement="bottom" data-original-title="set basic info which alarm send by email" id="setBasicInfoWhichAlarmSendByEmail">
+                                            <i class="far fa-info-circle"></i> Alarm Send by Email
+                                        </button>
+                                        <button class="btn-sm btn btn-primary hvr-sweep-to-left btnPrintId mt-2" type="button" data-toggle="tooltip" data-placement="bottom" data-original-title="set basic info which alarm send by push" id="setBasicInfoWhichAlarmSendByPush">
+                                            <i class="far fa-info-circle"></i> Alarm Send by Push
+                                        </button>
+                                    </div>
+                                </div>  
+                                <div class="row mt-3"> 
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <div id="gridBasicInfo" class="zGrid"></div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                     
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="nav-camera">
+                    <div class="zContainer">
+                        <div class="row"> 
+                            <div class="col-12 col-sm-12">
+                                <div class="row mt-2">  
+                                	<div class="col-sm-6 col-md-3 col-xs-12 mt-2">  
+                                        <input type="text" class="form-control form-control-sm pl-2" id="track_id" name="track_id"  placeholder="TrackID..."/> 
+                            		</div>
+                            		<div class="col-sm-6 col-md-3 col-xs-12 mt-2"> 
+                                        <input type="number" class="form-control form-control-sm pl-2" id="camera_index" name="camera_index"  placeholder="Camera Index"/> 
+                            		</div>  
+                            	</div>
+                        	    <div class="row col-sm-6 col-md-6 col-xs-12 mt-2">  
+                        	        <div class="frame-wrap">
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="cbx1" name="cbx">
+                                            <label class="custom-control-label" for="cbx1">320*240</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="cbx2" name="cbx">
+                                            <label class="custom-control-label" for="cbx2">640*480</label>
+                                        </div>                                         
+                                    </div> 
+                        	    </div>
+                        	    <div class="row col-sm-12 col-md-12 col-xs-12 mt-2"> 
+                        	        <div class="frame-wrap">
+                                        <div class="custom-control custom-checkbox custom-control-inline">
+                                            <input type="checkbox" class="custom-control-input" id="camera1">
+                                            <label class="custom-control-label" for="camera1">Camera1</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox custom-control-inline">
+                                            <input type="checkbox" class="custom-control-input" id="camera2" >
+                                            <label class="custom-control-label" for="camera2">Camera2</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox custom-control-inline">
+                                            <input type="checkbox" class="custom-control-input" id="camera3">
+                                            <label class="custom-control-label" for="camera3">Camera3</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox custom-control-inline">
+                                            <input type="checkbox" class="custom-control-input" id="camera4" >
+                                            <label class="custom-control-label" for="camera4">Camera4</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox custom-control-inline">
+                                            <input type="checkbox" class="custom-control-input" id="camera5" >
+                                            <label class="custom-control-label" for="camera5">Camera5</label>
+                                        </div>
+                                    </div> 
+                        	    </div> 
+                        	    <div class="row  mt-2">
+                        	        <div class="col-sm-6 col-md-3 col-xs-12 mt-2"> 
+                                        <input type="number" class="form-control form-control-sm pl-2" id="take_photo_interval" name="take_photo_interval"  placeholder="Take Photo Interval(30s)"/> 
+                            		</div>  
+                        	    </div>
+                        	    <div class="row col-sm-6 col-md-3 col-xs-12 mt-2  mt-2">
+                        	        <div class="frame-wrap ">
+                                        <div class="custom-control custom-checkbox custom-control-inline">
+                                            <input type="checkbox" class="custom-control-input" id="sos">
+                                            <label class="custom-control-label" for="sos">SOS</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox custom-control-inline">
+                                            <input type="checkbox" class="custom-control-input" id="high" >
+                                            <label class="custom-control-label" for="high">High</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox custom-control-inline">
+                                            <input type="checkbox" class="custom-control-input" id="low">
+                                            <label class="custom-control-label" for="low">Low</label>
+                                        </div> 
+                                    </div> 
+                        	    </div> 
+                        	    <div class="row  mt-2">
+                        	        <div class="col-sm-6 col-md-3 col-xs-12"> 
+                                        <input type="number" class="form-control form-control-sm pl-2" id="camera_index" name="camera_index"  placeholder="Take Photo Times"/> 
+                            		</div> 
+                        	    </div> 
+                        	    <div class="col-12 col-sm-12 col-md-12 col-xl-12 row mt-2">
+                                    <div class="button-group">   
+                        		        <button id="caputre1" class="btn-sm btn btn-primary  btn-outline-default text-white hvr-sweep-to-left mt-1" type="button" data-toggle="tooltip" data-placement="bottom" data-original-title="set take photo to vehicle" >
+                                            <i class="far fa-camera"></i> Take Photo
+                                        </button>  
+                                         <button id="caputre2" class="btn-sm btn btn-primary  btn-outline-default text-white hvr-sweep-to-left mt-1" type="button" data-toggle="tooltip" data-placement="bottom" data-original-title="set take photo by interval to vehicle" >
+                                            <i class="far fa-camera"></i> Take Interval Photo
+                                        </button> 
+                                        <button id="caputre3" class="btn-sm btn btn-primary  btn-outline-default text-white hvr-sweep-to-left mt-1" type="button" data-toggle="tooltip" data-placement="bottom" data-original-title="set take photo by trigger to vehicle" >
+                                            <i class="far fa-camera"></i> Take Trigger Photo
+                                        </button>
+                            		</div> 
+                            	</div>
+                        	    <div class="row mt-3"> 
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <div id="gridCamera" class="zGrid"></div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+                </div> 
+            </div>
+        </div>
+    </div> 
+</div> 
+
+
+
+
+
+
+
+
+
+
+

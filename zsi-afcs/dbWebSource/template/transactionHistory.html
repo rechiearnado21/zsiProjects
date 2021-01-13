@@ -1,0 +1,128 @@
+<script type="text/javascript" src="/scripts/print.min.js"></script>
+<style>
+    .zGrid .zHeaders > .item .title {
+        height: 20px;
+        align-items: center;
+        display: inherit;
+    } 
+    @media print {
+         .zRow.zTotal{
+             position:unset;
+         }
+    }
+    .zRow.zTotal, .zRow.zTotal:hover{
+        color: #fff;
+        font-weight: bold;
+    }
+  
+    .after_modal_appended{  
+        position:relative;
+    }
+    .modal{
+        position: absolute !important;
+    }
+    .modal-backdrop{
+        opacity: 0 !important;
+    }
+    
+    #gridDailyFareCollections .zRow {
+        width: 100%;
+    }
+    
+     
+    #gridForPostingSummary .zHeaders {
+        width: 1750px;
+    }
+</style>
+<div class="panel">
+    <div class="panel-container">
+        <div class="panel-content">
+                
+            <ul class="nav nav-tabs main-nav-tabs" role="tablist"> 
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#nav-forPosting" role="tab" aria-controls="nav-forPosting"><i class="far fa-file-alt"></i>Vehicle</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#nav-posted" role="tab" aria-controls="nav-posted"><i class="far fa-file-check"></i>Driver</a>
+                </li>
+            </ul> 
+            <div class="tab-content border border-top-0 p-3">                   
+                <div role="tabpanel" class="tab-pane fade" id="nav-forPosting">
+                    <div class="zContainer">
+                        <div class="row"> 
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" id="forGrid">
+                                 <div id="gridTransactions" class="zGrid"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="modalForPostingSummary" class="modal fade modal-backdrop-transparent" role="dialog">
+                        <div class="modal-dialog modal-full">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close pl-0 ml-0 mr-1" data-dismiss="modal" aria-label="Close" title="Back">
+                                        <i class="fas fa-arrow-alt-circle-left"></i>
+                                    </button>
+                                    <h5 id="modalTitle" class="modal-title"></h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" title="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row"> 
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <!--<div id="gridForPostingSummary" class="zGrid"></div> -->
+                                        </div>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="nav-posted">
+                    <div class="zContainer">
+                        <div class="row"> 
+                            <div class="col-12 col-sm-12">
+                                 <div id="gridPostedTransactions" class="zGrid"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="modalPostedSummary" class="modal fade modal-backdrop-transparent" role="dialog">
+                        <div class="modal-dialog modal-full">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close pl-0 ml-0 mr-1" data-dismiss="modal" aria-label="Close" title="Back">
+                                        <i class="fas fa-arrow-alt-circle-left"></i>
+                                    </button>
+                                    <h5 id="modalTitle" class="modal-title"></h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" title="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="col-12 col-sm-12 col-md-12">  
+                                        <div class="row"> 
+                                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-1">
+                                                <!--<div class="zGrid" id="gridPostedSummary"></div>-->
+                                            </div>  
+                                        </div>
+                                    </div>   
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                </div> 
+            </div>
+        </div>
+    </div> 
+</div> 
+
+
+
+
+
+
+
+
+
+
+

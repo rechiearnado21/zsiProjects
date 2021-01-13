@@ -1,0 +1,125 @@
+<script src='/javascript/name/zsiSearch'></script>
+<div class="panel">
+    <div class="panel-container">
+        <div class="panel-content">
+            <div class="col-sm-12 col-md-12 col-lg-12 col-12">
+                <ul class="nav nav-tabs main-nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#nav-route" role="tab" aria-controls="nav-route"><i class="fas fa-map-marker-alt"></i> Routes</a>
+                    </li>
+                    <li class="nav-item hide">
+                        <a class="nav-link" data-toggle="tab" href="#nav-routeno" role="tab" aria-controls="nav-routeno"><i class="fas fa-map-signs"></i> Route No.</a>
+                    </li>
+                    <li class="nav-item hide">
+                        <a class="nav-link" data-toggle="tab" href="#nav-routeDtls" role="tab" aria-controls="nav-routeDtls"><i class="fas fa-map mr-1"></i> Route Details</a>
+                    </li>
+                </ul> 
+                <div class="tab-content border border-top-0 p-3">
+                    <div role="tabpanel" class="tab-pane fade show active" id="nav-route">
+                        <div class="zContainer">
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-1" id="forGrid">
+                                     <div id="gridRoutes" class="zGrid"></div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">    
+                                    <div class="button-group">
+                                        <button type="button" class="btn btn-primary btn-sm hvr-sweep-to-left" id="btnSaveRoute">
+                                            <i class="far fa-save"></i> Save
+                                        </button>
+                                        <button type="button" class="btn btn-primary btn-sm hvr-sweep-to-left" id="btnDeleteRoute">
+                                            <i class="far fa-trash"></i> Delete
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="nav-routeno">
+                        <div class="zContainer">
+                            <div class="row">
+                                <div class="col-12 col-sm-5 col-md-4 mb-1"> 
+                                    <div class="input-group" style="flex-wrap: inherit !important;">
+                                        <select id="route_id" class="form-control form-control-sm" autocomplete="off"></select>
+                                        <div class="input-group-append">
+                                            <button id="btnFilterVal" class="btn-sm btn btn-primary btn-outline-default text-white hvr-sweep-to-left" type="button" title="Filter">
+                                                <i class="fas fa-filter"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                        		</div>
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-1">
+                                    <div id="gridRouteNo" class="zGrid"></div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">    
+                                    <div class="button-group">     
+                                        <button type="button" class="btn btn-primary btn-sm hvr-sweep-to-left" id="btnSaveRouteNo">
+                                            <i class="far fa-save"></i> Save
+                                        </button>
+                                        <button type="button" class="btn btn-primary btn-sm hvr-sweep-to-left" id="btnDeleteRouteNo">
+                                            <i class="far fa-trash"></i> Delete
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="nav-routeDtls">
+                        <div class="zContainer">
+                            <div class="row">
+                                <div class="col-12 col-sm-5 col-md-4 mb-1"> 
+                                    <div class="input-group" style="flex-wrap: inherit !important;">
+                                        <select class="form-control form-control-sm" id="route_no" required autocomplete="off"></select>
+                                        <div class="input-group-append">
+                                            <button id="btnFilterVal1" class="btn-sm btn btn-primary btn-outline-default text-white hvr-sweep-to-left" type="button" title="Filter">
+                                                <i class="fas fa-filter"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                        		</div>
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-1">
+                                    <div id="gridRouteDetails" class="zGrid"></div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">    
+                                    <div class="button-group">     
+                                        <button type="button" class="btn btn-primary btn-sm hvr-sweep-to-left" id="btnSaveRouteDetails">
+                                            <i class="far fa-save"></i> Save
+                                        </button>
+                                        <button type="button" class="btn btn-primary btn-sm hvr-sweep-to-left" id="btnDeleteRouteDetails">
+                                            <i class="far fa-trash"></i> Delete
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           </div>
+        </div>
+    </div> 
+</div>
+<!--<div class="modal" id="modalRouteDetails" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <form id="frm_modalRouteDetails">
+                <div class="modal-header">
+                    <h5 class="modal-title"> Title </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-1">
+                            <div id="gridRouteDetails" class="zGrid"> </div>
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                            <button type="button" id="btnSaveRouteDetails" class="btn btn-primary btn-sm"><i class="far fa-save"></i> Save</button>
+                            <button type="button" id="btnDeleteRouteDetails" class="btn btn-primary btn-sm"><i class="fas fa-trash-alt"></i> Delete</button>    
+                        </div>
+                   </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>-->
+    

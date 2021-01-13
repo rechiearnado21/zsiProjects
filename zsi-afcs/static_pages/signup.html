@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=8, IE=9, IE=edge" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="/favicon.png" type="image/x-icon">
+
+<title>SIGN UP - ZSI AFCS</title>
+<script src='../scripts/jquery.min.js'></script>
+<script src='../scripts/zsiLib.js'></script>
+<script src='../scripts/handlebars.min.js'></script>
+<link rel="stylesheet" media="screen, print" href='../css/vendors.bundle.css'>
+<link rel="stylesheet" media="screen, print" href='../css/app.bundle.css'>
+<link rel="mask-icon" href='../img/favicon/safari-pinned-tab.svg' color="#5bbad5">
+<link rel="stylesheet" media="screen, print" href='../css/miscellaneous/reactions/reactions.css'>
+<link rel="stylesheet" media="screen, print" href='../css/miscellaneous/fullcalendar/fullcalendar.bundle.css'>
+<link rel="stylesheet" media="screen, print" href='../css/miscellaneous/jqvmap/jqvmap.bundle.css'>
+<link rel="stylesheet" media="screen, print" href='../css/formplugins/select2/select2.bundle.css'>
+<link rel="stylesheet" media="screen, print" href='../css/formplugins/bootstrap-datepicker/bootstrap-datepicker.css'>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" media="all">
+<link rel="stylesheet" media="screen, print" href='../css/formplugins/summernote/summernote.css'>
+</head>
+<body>
+<style type="text/css">
+	body{
+		padding: 0;
+		margin: 0;
+	}
+	.page-content-wrapper{
+	background: linear-gradient(to right, #08005f 40%, #07004e); 
+	}
+	.p-color-white{
+		color: white;
+	}
+	.bg-brand-dark{
+		background-color: #f1efef;
+		color: #160202;
+	}
+	.btn-payroll {
+		background-image: linear-gradient(to bottom, #1a0dab 0px, #10058b 100%);
+		color: #fff; 
+	}
+	.btn-payroll:hover {
+		background-image: linear-gradient(to bottom, #10058b 0px, #0d0379 100%);
+		color: #fff; 
+	}
+	.btn-signup {
+		background-image: linear-gradient(to bottom, #fff 0px, #fff 100%);
+		color: #000; 
+	}
+	.btn-signup:hover {
+		background-image: linear-gradient(to bottom, #10058b 0px, #0d0379 100%);
+		color: #fff; 
+	}
+	.color-red{
+		color: #126eb8b5;
+	}
+	.color-red:hover{
+		color: white;
+	}
+	.help-block{
+		color: #4c4c4c !important;
+	}
+	.zsi-home-color{color:#ffffff;}
+	.flex-row a i {
+		color: #cfcfff;
+	}
+	.flex-row a i:hover {
+		color: #ffffff;
+	}
+	.zsi-home-color a {
+		color: #ffffff;
+	}
+	#frmSignUp {
+		height: 350px;
+		overflow-y: auto;
+	}
+</style>
+<div class="page-wrapper">
+	<div class="page-inner">
+		<div class="page-content-wrapper">
+			<div class="height-10 w-100 shadow-lg px-4 bg-brand-red">
+				<div class="d-flex align-items-center container p-0">
+					<div class="page-logo width-mobile-auto m-0 align-items-center justify-content-center p-0 bg-transparent bg-img-none shadow-0 height-9">
+						<a href="/" class="page-logo-link press-scale-down d-flex align-items-center navbar-brand text-white">
+							<img src='../images/logo.png' alt="Lear Logo" aria-roledescription="logo" class="mr-2">
+							 ZSI AFCS
+						</a>
+					</div>
+					<a href="#" class="btn-link text-white ml-auto">
+						
+					</a>
+				</div>
+			</div>
+			<div class="flex-1" style="background: url(../img/svg/pattern-1.svg) no-repeat center bottom fixed; background-size: cover;">
+				<div class="container py-lg-5 px-4 px-sm-0">
+					<div class="row">
+						<div class="col col-md-6 col-lg-7 hidden-sm-down zsi-home-color">
+							<h2 class="fs-xxl fw-500 mt-4">
+								Welcome to ZFleet Control Panel
+								<small class="h3 fw-300 mt-3 mb-5 opacity-60">
+									Powering your modern jeepney fleet
+									
+								</small>
+							</h2>
+							<a href="#" class="fs-lg fw-500 opacity-70">Learn more &gt;&gt;</a>
+							<div class="d-sm-flex flex-column align-items-center justify-content-center d-md-block">
+								<div class="px-0 py-1 mt-5 fs-nano opacity-50">
+									Find us on social media
+								</div>
+								<div class="d-flex flex-row opacity-70">
+									<a href="#" class="mr-2 fs-xxl bg-color-red">
+										<i class="fab fa-facebook-square"></i>
+									</a>
+									<a href="#" class="mr-2 fs-xxl bg-color-red">
+										<i class="fab fa-twitter-square"></i>
+									</a>
+									<a href="#" class="mr-2 fs-xxl bg-color-red">
+										<i class="fab fa-google-plus-square"></i>
+									</a>
+									<a href="#" class="mr-2 fs-xxl bg-color-red">
+										<i class="fab fa-linkedin"></i>
+									</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-12 col-md-6 col-lg-5 col-xl-4 ml-auto col-xs-12">
+							<h1 class="text-white d-sm-block">
+								Sign Up
+							</h1>
+							<div class="card p-4 rounded-plus bg-brand-dark">
+								<form id="frmSignUp" class="needs-validation" novalidate>
+									<div class="col-12 mb-1">
+										<label class="form-label" for="username">Username</label>
+										<input type="text" id="username" name="username" class="form-control form-control-sm" required>
+									</div>
+									<div class="col-12 mb-1">
+										<label class="form-label" for="password">Password</label>
+										<input type="password" id="password" name="password" class="form-control form-control-sm input_pass" required>
+									</div>
+									
+									<div class="col-12 mb-1">
+										<label class="form-label" for="password">Company Contact</label>
+										<input type="text" id="company_name" name="company_name" class="form-control form-control-sm" required>
+									</div>
+									<div class="col-12 mb-1">
+										<label class="form-label" for="password">Phone #</label>
+										<input type="text" id="company_landline" name="company_landline" class="form-control form-control-sm" required>
+									</div>
+									<div class="col-12 mb-1">
+										<label class="form-label" for="password">Contact #</label>
+										<input type="text" id="company_mobile" name="company_mobile" class="form-control form-control-sm" required>
+									</div>
+									<div class="col-12 mb-1">
+										<label class="form-label" for="password">TIN #</label>
+										<input type="text" id="company_tin" name="company_tin" class="form-control form-control-sm" required>
+									</div>
+									<div class="col-12 mb-1">
+										<label class="form-label" for="password">Email</label>
+										<input type="text" id="emal_add" name="emal_add" class="form-control form-control-sm" required>
+									</div>
+									<div class="col-12 mb-1">
+										<label class="form-label" for="password">Bank</label>
+										<select id="bank_id" name="bank_id" class="form-control form-control-sm" required></select>
+									</div>
+									<div class="col-12 mb-1">
+										<label class="form-label" for="password">Account #</label>
+										<input type="text" id="account_no" name="account_no" class="form-control form-control-sm" required>
+									</div>
+									<div class="col-12 mb-1">
+										<label class="form-label" for="password">Company Address</label>
+										<input type="text" id="company_address" name="company_address" class="form-control form-control-sm" required>
+									</div>
+									<div class="col-12 mb-1">
+										<label class="form-label" for="password">City</label>
+										<input type="text" id="city_id" name="city_id" class="form-control form-control-sm" required>
+									</div>
+									
+									<div class="col-lg-12">
+										<button id="submit" type="submit" class="btn btn-payroll btn-md col-12">Save</button>
+									</div>
+									
+										
+									
+										
+								</form>
+								
+								<div class="col-lg-12 pl-lg-1 my-2 text-center">
+									Already on AFCS? <a href="/" id="btnSignUp" class="">Sign in</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		
+		</div>
+	</div>
+</div>
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" title="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body panel" style="margin-bottom:0">
+                <p id="msg">Are you sure you want to save this data?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnSave" class="btn btn-primary btn-sm">Yes</button>
+                <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../dbWebSource/js/zsilib.js"></script>
+<script src="../dbWebSource/js/appstart.js"></script>
+<script src='../js/signup.js'></script>
+<script src='../js/vendors.bundle.js'></script>
+<script src='../js/app.bundle.js'></script>
+<script src='../js/formplugins/bootstrap-datepicker/bootstrap-datepicker.js'></script>
+<script src='../js/formplugins/select2/select2.bundle.js'></script>
+<script type="text/javascript">
+	/* Activate smart panels */
+	$('#js-page-content').smartPanel();
+
+</script>
+</body>
+</html>

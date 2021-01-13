@@ -1,0 +1,133 @@
+ 
+<style type="text/css" media="all">  
+   
+  
+   .zGrid .zHeaders > .item .title {
+        height: 20px;
+        align-items: center;
+        display: inherit;
+    } 
+    @media print {
+         .zRow.zTotal{
+             position:unset;
+         }
+    }
+    .zRow.zTotal, .zRow.zTotal:hover{
+        color: #fff;
+        font-weight: bold;
+    }
+   
+    .modal{
+        position: absolute !important;
+    }
+    .modal-backdrop{
+        opacity: 0 !important;
+    }
+    
+    .zGraph {
+        width: 100%;
+        height: 300px;
+    } 
+    
+    #gridModalDailyRecords .zRow {
+        width: 100%;
+    }
+    .mt-7 {
+        margin-top: 6.5rem !important;
+    }   
+    open: body.modal-open { height: 100vh; overflow-y: hidden; }
+    #table{
+        width:0px;
+    }
+</style>
+<div class="panel main">
+    <div class="panel-container">
+        <div class="panel-content">
+            <div class="col-md-12 col-sm-12 col-xs-12" id="nonBankPersonnel">    
+                <div class="row mt-3"> 
+                    <div class="col-md-12 col-sm-12 col-12">
+                        <div class="panel mb-0">
+                            <div class="panel-hdr text-primary">
+                                <h2>
+                                    <span class="mr-2"><i class="far fa-chart-pie"></i></span>Yearly Records
+                                </h2> 
+                                <div class="panel-toolbar"> 
+                                    <button class="btn btn-panel waves-effect waves-themed far fa-window-minimize" data-action="panel-collapse" data-offset="0,10" data-original-title="Collapse" data-toggle="tooltip" title="Collapse"></button>
+                                    <button class="btn btn-panel waves-effect waves-themed fas fa-expand" data-action="panel-fullscreen" data-offset="0,10" data-original-title="Fullscreen" data-toggle="tooltip" title="Expand"></button> 
+                                </div>
+                            </div>
+                            <div class="panel-container show">
+                                <div class="panel-content">
+                                    <div class="panel-container collapse show">
+                                        <div class="panel-content">
+                                            <div class="zGraph" id="graph1"></div>
+                                        </div>
+                                    </div> 
+                                </div>
+                            </div> 
+                        </div> 
+                    </div> 
+                </div> 
+            </div>
+            <div class="panel-content row mb-3" id="newDiv">   
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade show" id="modalDailyRecords" tabindex="-1" role="dialog" aria-modal="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" title="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-12 col-sm-12 col-md-12"> 
+                    <div class="row">     
+                        <div class="col-sm-6 col-md-4 col-xs-1">
+                            <label for="" class="col-form-label text-label"></label>
+                            <img id="companyLogo" style="width:150px; height:auto;" aria-roledescription="logo"> 
+                        </div>
+                        <div class="col-sm-6 col-md-8 col-xs-1">
+                            <label for="" class="col-form-label text-label mt-6" id="titleLabel"></label>
+                            <u><h5 id="modalTitle" class="modal-title"></h5></u> 
+                        </div>
+                    </div> 
+                    <div class="row">   
+                        <div class="col-sm-6 col-md-3 col-xs-12">
+                		    <label for="customer" class="col-form-label text-label">Month</label>   
+                            <select  id="month_of" class="form-control form-control-sm"></select> 
+                		</div> 
+                		<div class="col-sm-6 col-md-3 col-xs-12 " >
+                		    <label for="customer" class="col-form-label text-label">Year</label>
+                		    <div class="input-group"> 
+                		        <label class="form-control form-control-sm  pl-2 pt-1" id="modalDates" > </label>
+                                <div class="input-group-append">
+                                    <button id="filterMonth" class="btn-sm btn btn-primary btn-outline-default text-white hvr-sweep-to-left" type="button" title="Filter">
+                                      <i class="fas fa-filter"></i>
+                                    </button>
+                                </div> 
+                            </div>
+                		</div> 
+                    </div>
+                    <div class="row mt-2">  
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-1">
+                            <div class="zGrid" id="gridModalDailyRecords"></div>
+                        </div>  
+                    </div> 
+                    <button type="button" class="btn btn-primary btn-sm btn-ol btnExport mt-1 hvr-sweep-to-left" download="testing.xls" >Export to Excel</button>
+                 
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>
+
+ 
+
+
+
+
+

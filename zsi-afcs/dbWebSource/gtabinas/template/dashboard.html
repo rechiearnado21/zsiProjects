@@ -1,0 +1,44 @@
+ 
+<style type="text/css" media="all">  
+    .zGraph {
+        width: 100%;
+        height: 300px;
+    } 
+    #gridScannedPeople .zHeaders .title .text { 
+        width: 100% !important;
+    }
+</style>
+<div class="panel main">
+    <div class="panel-container">
+        <div class="panel-content">
+            <div class="col-md-12 col-sm-12 col-xs-12">    
+                <div class="row mt-3"> 
+                    <div class="col-md-12 col-sm-12 col-12">
+                        <div class="panel mb-0">
+                            <div class="panel-hdr text-primary">
+                                <h2>
+                                    <span class="mr-2"><i class="far fa-chart-pie"></i></span>Daily Records
+                                </h2> 
+                                <div class="panel-toolbar"> 
+                                    <button class="btn btn-panel waves-effect waves-themed fal fa-window-minimize" data-action="panel-collapse" data-offset="0,10" data-original-title="Collapse" data-toggle="tooltip" title="Collapse"></button>
+                                    <button class="btn btn-panel waves-effect waves-themed fal fa-expand" data-action="panel-fullscreen" data-offset="0,10" data-original-title="Fullscreen" data-toggle="tooltip" title="Expand"></button> 
+                                </div>
+                            </div>
+                            <div class="panel-container show">
+                                <div class="panel-content">
+                                    <div class="panel-container collapse show">
+                                        <div class="panel-content">
+                                            <div class="zGraph" id="graph1"></div>
+                                        </div>
+                                    </div> 
+                                </div>
+                            </div> 
+                        </div> 
+                    </div> 
+                </div> 
+            </div>
+            <div class="panel-content row mb-3" id="newDiv">   
+            </div>
+        </div>
+    </div>
+</div>    

@@ -1,0 +1,57 @@
+<script type="text/javascript" src="/scripts/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+<style>
+    .zTable .crPanel {
+        height: 0;
+        display: none;
+    }
+    #qrTable tr th{
+        padding: 0 !important;
+    }
+</style>
+
+<div class="panel">
+    <div class="panel-container">
+        <div class="panel-content">     
+            <div class="zContainer"> 
+                <div class="col-12 col-sm-12 col-md-12 col-xl-12">
+                    <div class="row mb-2">
+                        <div class="col-12 col-sm-4 col-md-3">
+                            <label class="col-form-label control-label"><b>Batch No</b></label>
+                            <div class="input-group" style="flex-wrap: inherit !important;">
+                                <input type="text" id="batch_no" class="form-control zsi-form-control form-control-sm pl-2 numeric" required autoComplete="off">
+                                <div class="input-group-append">
+                                    <button id="btnFilterVal" class="btn-sm btn btn-primary btn-outline-default text-white hvr-sweep-to-left" type="button" title="Filter">
+                                       <i class="fas fa-print" disabled></i> Print
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-1">
+                        <div id="printThis" class="hide col-12 col-sm-12">
+                            <div class="zTable">
+                                <table id="qrTable" >
+                                    <thead>
+                                        <tr>
+                                            <th style="width:160px;text-align:left;">TOP-IN</th>
+                                            <th style="width:160px;text-align:left;">TOP-OUT</th>
+                                            <th style="width:160px;text-align:left;">TOP-IN</th>
+                                            <th style="width:160px;text-align:left;">TOP-OUT</th>
+                                            <th style="width:160px;text-align:left;">TOP-IN</th>
+                                            <th style="width:160px;text-align:left;">TOP-OUT</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                                <table >
+                                    <tr><td style='text-align:left'>Batch No. <span id="batchNo"></span></td></tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+        </div>
+    </div>
+</div> 

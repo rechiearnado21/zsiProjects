@@ -1,0 +1,43 @@
+<style>
+   .fa-sign-out-alt, .count{
+       color: #fff;
+   }
+</style>
+<div class="panel">
+    <div class="panel-container">
+        <div class="panel-content">  
+            <div class="row">
+                <div class="col-sm-3 col-md-3 col-12">
+                    <label class="col-form-label">Employee</label>
+                    <select id="userId" class="form-control form-control-sm"></select>
+                </div>
+                <div class="col-sm-3 col-md-3 col-12">
+                    <label class="col-form-label">Leave Type</label>
+                    <select id="leaveTypeId" class="form-control form-control-sm"></select>
+                </div>
+                <div class="col-sm-3 col-md-3 col-12 mb-2">
+                    <label class="col-form-label">Date</label>
+                    <div class="input-group">
+                        <input id="datepicker" class="form-control form-control-sm p-2"/>
+                        <div class="input-group-append">
+                            <button id="btnGo" class="btn-sm btn btn-primary btn-outline-default" type="button">
+                                <i class="fas fa-sign-out-alt"></i><i class="count"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div id="gridId" class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-none mb-1">
+                    <div id="gridLeaves" class="zGrid"></div>
+                </div>
+                <div id="btnId" class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-1 d-none">   
+                    <button type="button" class="btn btn-primary btn-sm" id="btnSaveLeaves" data-toggle="tooltip" title="Save">
+                        <i class="far fa-save"></i> Save
+                    </button>
+                    <!--<button type="button" class="btn btn-primary btn-sm" id="btnDeleteLeaves" data-toggle="tooltip" title="Delete">
+                    	<i class="fas fa-trash-alt"></i> Delete
+                    </button>-->    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

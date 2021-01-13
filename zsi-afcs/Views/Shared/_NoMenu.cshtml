@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=8, IE=9, IE=edge" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="Developed By" content="zetta-solutions.net">
+    <link rel="shortcut icon" href='@Url.Content("~/")favicon.png' type="image/x-icon">
+    <title>@ViewBag.pageTitle  </title>
+   <!-- Call App Mode on ios devices -->
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<!-- Remove Tap Highlight on Windows Phone IE -->
+	<meta name="msapplication-tap-highlight" content="no">
+	<!-- base css -->
+	<link rel="stylesheet" media="screen, print" href='@Url.Content("~/")css/vendors.bundle.css'>
+	<link rel="stylesheet" media="screen, print" href='@Url.Content("~/")css/app.bundle.css'>
+	<link rel="mask-icon" href='@Url.Content("~/")img/favicon/safari-pinned-tab.svg' color="#5bbad5">
+	<link rel="stylesheet" media="screen, print" href='@Url.Content("~/")css/miscellaneous/reactions/reactions.css'>
+	<link rel="stylesheet" media="screen, print" href='@Url.Content("~/")css/miscellaneous/fullcalendar/fullcalendar.bundle.css'>
+    <link rel="stylesheet" media="screen, print" href='@Url.Content("~/")css/miscellaneous/jqvmap/jqvmap.bundle.css'>
+    <link rel="stylesheet" media="screen, print" href='@Url.Content("~/")css/formplugins/select2/select2.bundle.css'>
+    <link rel="stylesheet" media="screen, print" href='@Url.Content("~/")css/formplugins/bootstrap-datepicker/bootstrap-datepicker.css'>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" media="all">
+</head>
+<body>
+	<script src='@Url.Content("~/")Scripts/jquery.min.js'></script>
+	<script src='@Url.Content("~/")Scripts/handlebars.min.js'></script>
+    @Html.Raw(ViewBag.GetScriptLinkCurrentVersion("zsiLib"))   
+    @{
+        string userId = "";
+        userId = "var userId=" + webCM.SessionHandler.getUserProp("userId") + ";";
+    }    
+    <script>
+        var base_url = '@Url.Content("~/")';
+        var controller_url = '@this.Context.Request.RequestContext.RouteData.Values["controller"].ToString()';
+        @userId
+    </script>
+    <div class="progressWindow zPopup-system">
+        <div class="loadingImg"></div>
+        <div class="loadingText">Loading...Please wait</div>
+    </div>
+    <div class="errorWindow zPopup-system">
+        Some processe(s) encountered a problem.
+        <br> Please Contact System Administrator.
+    </div>
+    @Html.Raw(ViewBag.GetScriptLinkCurrentVersion("appStart")) 
+    <div class="container-fluid page">
+        @RenderBody()
+    </div>
+
+@{
+    if (Session["zsi_login"].ToString() == "Y")
+    {
+        <div class='debugPanel noprint'>     
+              <a href="@Url.Content("~/")pagetemplate/source/@ViewBag.pageName" target="_blank">Edit Page Template</a> 
+            | <a href="@Url.Content("~/")javascript/source/@ViewBag.pageName" target="_blank">Edit Javascript</a> 
+            | <a href="@Url.Content("~/")page" target="_blank">Pages</a>         
+            | <a href="@Url.Content("~/")pagetemplate" target="_blank">Page Templates</a>
+            | <a href="@Url.Content("~/")javascript" target="_blank">JavaScripts</a>
+        </div> 
+    }
+}
+        @Html.Raw(ViewBag.GetScriptLinkCurrentVersion("easyJsTemplateWriter"))
+        
+        <!-- base vendor bundle: 
+			 DOC: if you remove pace.js from core please note on Internet Explorer some CSS animations may execute before a page is fully loaded, resulting 'jump' animations 
+						+ pace.js (recommended)
+						+ jquery.js (core)
+						+ jquery-ui-cust.js (core)
+						+ popper.js (core)
+						+ bootstrap.js (core)
+						+ slimscroll.js (extension)
+						+ app.navigation.js (core)
+						+ ba-throttle-debounce.js (core)
+						+ waves.js (extension)
+						+ smartpanels.js (extension)
+						+ src/../jquery-snippets.js (core) -->
+        <script src='@Url.Content("~/")js/vendors.bundle.js'></script>
+        <script src='@Url.Content("~/")js/app.bundle.js'></script>
+        <script src='@Url.Content("~/")js/formplugins/bootstrap-datepicker/bootstrap-datepicker.js'></script>
+        <script type="text/javascript">
+            /* Activate smart panels */
+            $('#js-page-content').smartPanel();
+
+        </script>
+</body>
+</html>
+
+
+

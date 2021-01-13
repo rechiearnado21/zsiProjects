@@ -1,0 +1,210 @@
+<script type="text/javascript" src="/scripts/print.min.js"></script>
+<style>
+    .zGrid .zHeaders > .item .title {
+        height: 20px;
+        align-items: center;
+        display: inherit;
+    }
+    
+    @media print {
+         .zRow.zTotal{
+             position:unset;
+         }
+    }
+    .zRow.zTotal, .zRow.zTotal:hover{
+        color: #fff;
+        font-weight: bold;
+    }
+    #btnFilterVal2:disabled {color: #212529;background-color: gray;border-color: #9e9999;}
+    #btnFilterVal1:disabled {color: #212529;background-color: gray;border-color: #9e9999;}
+    .after_modal_appended{  
+        position:relative;
+    }
+    .modal, .modal-backdrop {
+        position: absolute !important;
+    }
+    .modal-backdrop{
+        opacity: 0 !important;
+    }
+    
+    #gridForPostingSummary .zHeaders {
+        width: 1750px;
+    }
+</style>
+<div class="panel">
+    <div class="panel-container">
+        <div class="panel-content">
+            <div class="col-sm-12 col-md-12 col-lg-12 col-12">
+                <nav>
+                  <div class="nav nav-tabs nav-tab-main" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active"     data-toggle="tab" href="#nav-recentCollection" role="tab" aria-controls="nav-recentCollection"><i class="far fa-clock"></i> Recent Collection</a>
+                    <a class="nav-item nav-link"            data-toggle="tab" href="#nav-historyCollection" role="tab" aria-controls="nav-historyCollection"><i class="far fa-clock"></i> History Collection</a>
+                    <a class="nav-item nav-link"            data-toggle="tab" href="#nav-forPosting" role="tab" aria-controls="nav-forPosting"><i class="far fa-file-alt"></i> For Posting </a>
+                    <a class="nav-item nav-link"            data-toggle="tab" href="#nav-posted" role="tab" aria-controls="nav-posted"><i class="far fa-file-check"></i> Posted </a>
+                  </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div role="tabpanel" class="tab-pane fade show active" id="nav-recentCollection"> 
+                        <nav>
+                            <div class="nav nav-tabs mb-2 nav-tab-sub nav-sub-mfg" id="nav-tab" role="tablist">
+                                <a class="nav-item nav-link nav-mfg  active" data-toggle="tab" href="#nav-mfg" role="tab" id="mfg1">Collection by Trip</a> 
+                                <a class="nav-item nav-link nav-mfg" data-toggle="tab" href="#nav-mfg" role="tab" id="mfg5">Collection Details</a>
+                            </div>
+                        </nav>
+                        <div class="panel p-2 ">  
+                            <div class="row">  
+                            	<div class="col-sm-6 col-md-2 col-xs-12" id="tripNo">
+                        		    <label for="customer" class="col-form-label text-label">Trip No</label>   
+                                    <select  id="trip_no" class="form-control form-control-sm"></select>
+                        		</div>
+                        		<div class="col-sm-6 col-md-2 col-xs-12">
+                        		    <label for="customer" class="col-form-label text-label">Vehicle</label>   
+                                    <select  id="dailyFare_vehicle" class="form-control form-control-sm"></select>
+                        		</div>
+                        		<div class="col-sm-6 col-md-2 col-xs-12">
+                        		    <label for="" class="col-form-label text-label">Driver</label>  
+                        			<select  id="dailyFare_driver" class="form-control form-control-sm"></select>
+                        		</div>   
+                        	   
+                        		<div class="col-sm-6 col-md-2 col-xs-12 " id="hideFromDate">
+                        		    <label for="" class="col-form-label text-label">From</label> 
+                        		    <input type="text" class="form-control form-control-sm pl-2" id="trip_startDate"  placeholder="Start date....."/> 
+                        		</div>  
+                        		<div class="col-sm-6 col-md-2 col-xs-12 " id="hideToDate">
+                        		    <label for="" class="col-form-label text-label">To</label> 
+                        		    <input type="text" class="form-control form-control-sm pl-2" id="trip_endDate"  placeholder="Start date....."/> 
+                        		</div>
+                        		<div class="col-sm-6 col-md-2 col-xs-12">
+                        		    <label for="" class="col-form-label text-label">&nbsp;</label>
+                        		    <input type="hidden" class="form-control form-control-sm pl-2"/>
+                        		     <div class="input-group"> 
+                                        <div class="input-group-append">
+                                            <button id="btnFilterCollection" class="btn-sm btn btn-primary btn-outline-default text-white hvr-sweep-to-left" type="button" title="Filter">
+                                              <i class="fas fa-filter"></i>
+                                            </button>
+                                        </div>
+                                        <div class="input-group-append ml-1">
+                                            <button id="btnResetDailyFare" class="btn-sm btn btn-primary btn-outline-default text-white hvr-icon-spin hvr-sweep-to-left" type="button" title="Reset">
+                                               <i class="far fa-refresh hvr-icon"></i> Reset
+                                            </button>
+                                        </div>
+                                    </div>
+                        		</div>  
+                            </div>
+                            <div class="row mt-3"> 
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div id="gridDailyFareCollections" class="zGrid"></div> 
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>                    
+                    <div role="tabpanel" class="tab-pane fade" id="nav-forPosting">
+                        <div class="mt-2"></div>
+                        <div class="zContainer">
+                            <div class="row"> 
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-1" id="forGrid">
+                                     <div id="gridTransactions" class="zGrid"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="modalForPostingSummary" class="modal fade modal-backdrop-transparent" role="dialog">
+                            <div class="modal-dialog modal-full">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close pl-0 ml-0 mr-1" data-dismiss="modal" aria-label="Close" title="Back">
+                                            <i class="fas fa-arrow-alt-circle-left"></i>
+                                        </button>
+                                        <h5 id="modalTitle" class="modal-title"></h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" title="Back">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="col-12 col-sm-12 col-md-12">  
+                                            <div class="row"> 
+                                                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-1">
+                                                    <div class="zGrid" id="gridForPostingSummary"></div>
+                                                </div>  
+                                            </div>
+                                        </div>   
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="nav-posted">
+                        <div class="zContainer">
+                            <div class="row"> 
+                                <div class="col-12 col-sm-12 mb-1">
+                                     <div id="gridPostedTransactions" class="zGrid"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="modalPostedSummary" class="modal fade modal-backdrop-transparent" role="dialog">
+                            <div class="modal-dialog modal-full">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close pl-0 ml-0 mr-1" data-dismiss="modal" aria-label="Close" title="Back">
+                                            <i class="fas fa-arrow-alt-circle-left"></i>
+                                        </button>
+                                        <h5 id="modalTitle" class="modal-title"></h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" title="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="col-12 col-sm-12 col-md-12">  
+                                            <div class="row"> 
+                                                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-1">
+                                                    <div class="zGrid" id="gridPostedSummary"></div>
+                                                </div>  
+                                            </div>
+                                        </div>   
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="modalPostedSummaryDtl" class="modal fade modal-backdrop-transparent" role="dialog">
+                            <div class="modal-dialog modal-full">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close pl-0 ml-0 mr-1" data-dismiss="modal" aria-label="Close" title="Back">
+                                            <i class="fas fa-arrow-alt-circle-left"></i>
+                                        </button>
+                                        <h5 id="modalTitle" class="modal-title"></h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" title="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="col-12 col-sm-12 col-md-12">  
+                                            <div class="row"> 
+                                                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-1">
+                                                    <div class="zGrid" id="gridPostedSummaryDtl"></div>
+                                                </div>  
+                                            </div>
+                                        </div>   
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <button type="button" class="btn btn-primary btn-sm btn-ol btnExport" >Export to Excel</button>
+                </div>
+           </div>
+        </div>
+    </div> 
+</div> 
+
+
+
+
+
+
+
+
+
+
+
